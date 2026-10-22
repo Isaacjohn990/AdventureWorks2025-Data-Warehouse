@@ -1,1 +1,1200 @@
+================================
+CREATING TABLE FOR BRONZE LAYER
+================================
+
+---For HumanResources_Department
+IF OBJECT_ID ('Bronze.HumanResources_Department', 'U') IS NOT NULL	
+DROP TABLE Bronze.HumanResources_Department;
+Create TABLE Bronze.HumanResources_Department
+(
+	DepartmentID	  smallint,
+	Name			      nvarchar(50),
+	GroupName		    nvarchar(50),
+	ModifiedDate	  datetime,
+	-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+  SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+---For HumanResources_Employee
+IF OBJECT_ID ('Bronze.HumanResources_Employee', 'U') IS NOT NULL	
+DROP TABLE Bronze.HumanResources_Employee;
+Create TABLE Bronze.HumanResources_Employee
+(
+	BusinessEntityID	    int,
+	NationalIDNumber	    nvarchar(15),
+	LoginID				        nvarchar(256),
+	OrganizationNode	    hierarchyid,
+	OrganizationLevel	    smallint,
+	JobTitle			        nvarchar(50),
+	BirthDate			        date,
+	MaritalStatus		      nchar(1),
+	Gender				        nchar(1),
+	HireDate			        date,
+	SalariedFlag		      bit,
+	VacationHours		      smallint,
+	SickLeaveHours		    smallint,
+	CurrentFlag			      bit,
+	rowguid				        uniqueidentifier,
+	ModifiedDate		      datetime,
+
+	-- Metadata columns
+	LoadDate              datetime DEFAULT GETDATE(),
+  SourceSystem          nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+---For HumanResources_EmployeeDepartmentHistory
+IF OBJECT_ID ('Bronze.HumanResources_EmployeeDepartmentHistory', 'U') IS NOT NULL	
+DROP TABLE Bronze.HumanResources_EmployeeDepartmentHistory;
+CREATE TABLE Bronze.HumanResources_EmployeeDepartmentHistory
+(
+	BusinessEntityID	        int,
+	DepartmentID		          smallint,
+	ShiftID				            tinyint,
+	StartDate			            date,
+	EndDate				            date,
+	ModifiedDate		          datetime,
+
+	-- Metadata columns
+	LoadDate                  datetime DEFAULT GETDATE(),
+  SourceSystem              nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+---For HumanResources_PayHistory
+IF OBJECT_ID ('Bronze.HumanResources_PayHistory', 'U') IS NOT NULL	
+DROP TABLE Bronze.HumanResources_PayHistory;
+CREATE TABLE Bronze.HumanResources_PayHistory
+(
+	BusinessEntityID	      int,
+	RateChangeDate		      datetime,
+	Rate				            money,
+	PayFrequency	        	tinyint,
+	ModifiedDate		        datetime,
+
+		-- Metadata columns
+	LoadDate                datetime DEFAULT GETDATE(),
+  SourceSystem            nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+---For HumanResources_JobCandidate
+IF OBJECT_ID ('Bronze.HumanResources_JobCandidate', 'U') IS NOT NULL
+DROP TABLE Bronze.HumanResources_JobCandidate;
+CREATE TABLE Bronze.HumanResources_JobCandidate
+(
+	JobCandidateID		          int,
+	BusinessEntityID	          int,
+	Resume				              xml,
+	ModifiedDate		            datetime,
+
+		-- Metadata columns
+	LoadDate                    datetime DEFAULT GETDATE(),
+  SourceSystem                nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+---For HumanResources_Shift
+IF OBJECT_ID ('Bronze.HumanResources_Shift', 'U') IS NOT NULL
+DROP TABLE Bronze.HumanResources_Shift;
+CREATE TABLE Bronze.HumanResources_Shift
+(
+	ShiftID				      tinyint,
+	Name				        nvarchar(50),
+	StartTime			      time,
+	EndTime				      time,
+	ModifiedDate		    datetime,
+
+		-- Metadata columns
+	LoadDate            datetime DEFAULT GETDATE(),
+  SourceSystem        nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+---For Person_Address
+IF OBJECT_ID ('Bronze.Person_Address', 'U') IS NOT NULL
+DROP TABLE Bronze.Person_Address;
+CREATE TABLE Bronze.Person_Address
+(
+	AddressID			        int,
+	AddressLine1		      nvarchar(60),
+	AddressLine2		      nvarchar(60),
+	City				          nvarchar(30),
+	StateProvinceID		    int,
+	PostalCode			      nvarchar(15),
+	SpatialLocation		    geography,
+	rowguid				        uniqueidentifier,
+	ModifiedDate		      datetime,
+
+		-- Metadata columns
+	LoadDate              datetime DEFAULT GETDATE(),
+  SourceSystem          nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+---For Person_AddressType
+IF OBJECT_ID ('Bronze.Person_AddressType', 'U') IS NOT NULL
+DROP TABLE Bronze.Person_AddressType;
+CREATE TABLE Bronze.Person_AddressType
+(
+	AddressTypeID		      int,
+	Name				          nvarchar(50),
+	rowguid				        uniqueidentifier,
+	ModifiedDate		      datetime,
+
+		-- Metadata columns
+	LoadDate              datetime DEFAULT GETDATE(),
+  SourceSystem          nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+---For Person_BusinessEntity
+IF OBJECT_ID ('Bronze.Person_BusinessEntity', 'U') IS NOT NULL
+DROP TABLE Bronze.Person_BusinessEntity;
+CREATE TABLE Bronze.Person_BusinessEntity
+(
+	BusinessEntityID	    int,
+	rowguid				        uniqueidentifier,
+	ModifiedDate		      datetime,
+
+	-- Metadata columns
+	LoadDate              datetime DEFAULT GETDATE(),
+    SourceSystem        nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+---For Person_BusinessEntityAddress
+IF OBJECT_ID ('Bronze.Person_BusinessEntityAddress', 'U') IS NOT NULL
+DROP TABLE Bronze.Person_BusinessEntityAddress;
+CREATE TABLE Bronze.Person_BusinessEntityAddress
+(
+	BusinessEntityID	      int,
+	AddressID			          int,
+	AddressTypeID		        int,
+	rowguid				          uniqueidentifier,
+	ModifiedDate		        datetime,
+
+		-- Metadata columns
+	LoadDate                datetime DEFAULT GETDATE(),
+  SourceSystem            nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+---For Person_BusinessEntityContact
+IF OBJECT_ID ('Bronze.Person_BusinessEntityContact', 'U') IS NOT NULL
+DROP TABLE Bronze.Person_BusinessEntityContact;
+CREATE TABLE Bronze.Person_BusinessEntityContact
+(
+	BusinessEntityID	      int,
+	PersonID			          int,
+	ContactTypeID		        int,
+	rowguid				          uniqueidentifier,
+	ModifiedDate		        datetime,
+
+		-- Metadata columns
+	LoadDate                datetime DEFAULT GETDATE(),
+  SourceSystem            nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+--- For Person_ContactType
+IF OBJECT_ID ('Bronze.Person_ContactType', 'U') IS NOT NULL
+DROP TABLE Bronze.Person_ContactType;
+CREATE TABLE Bronze.Person_ContactType
+(
+	ContactTypeID		        int,
+	Name				            nvarchar(50),
+	ModifiedDate		        datetime,
+	
+		-- Metadata columns
+	LoadDate                datetime DEFAULT GETDATE(),
+  SourceSystem            nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+--- For Person_CountryRegion
+IF OBJECT_ID ('Bronze.Person_CountryRegion', 'U') IS NOT NULL
+DROP TABLE Bronze.Person_CountryRegion;
+
+CREATE TABLE Bronze.Person_CountryRegion
+(
+	CountryRegionCode	        nvarchar(50),
+	Name				              nvarchar(50),
+	ModifiedDate		          datetime,
+	
+		-- Metadata columns
+	LoadDate                  datetime DEFAULT GETDATE(),
+  SourceSystem              nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+--- For Person_EmailAddress
+IF OBJECT_ID ('Bronze.Person_EmailAddress', 'U') IS NOT NULL
+DROP TABLE Bronze.Person_EmailAddress;
+CREATE TABLE Bronze.Person_EmailAddress
+(
+	BusinessEntityID	          int,
+	EmailAddressID		          int,
+	EmailAddress		            nvarchar(50),
+	rowguid				              uniqueidentifier,
+	ModifiedDate		            datetime,
+
+			-- Metadata columns
+	LoadDate                    datetime DEFAULT GETDATE(),
+  SourceSystem                nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+---For Person_Password
+IF OBJECT_ID ('Bronze.Person_Password', 'U') IS NOT NULL
+DROP TABLE Bronze.Person_Password;
+CREATE TABLE Bronze.Person_Password
+(
+	BusinessEntityID	        int,
+	PasswordHash		          varchar(128),
+	PasswordSalt		          varchar(10),
+	rowguid				            uniqueidentifier,
+	ModifiedDate		          datetime,
+			-- Metadata columns
+	LoadDate                  datetime DEFAULT GETDATE(),
+  SourceSystem              nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+---For Person_Person
+IF OBJECT_ID ('Bronze.Person_Person', 'U') IS NOT NULL
+DROP TABLE Bronze.Person_Person;
+CREATE TABLE Bronze.Person_Person
+(
+	BusinessEntityID	        int,
+	PersonType			          nchar(2),
+	NameStyle			            bit,
+	Title				              nvarchar(8),
+	FirstName			            nvarchar(50),
+	MiddleName			          nvarchar(50),
+	LastName			            nvarchar(50),
+	Suffix				            nvarchar(10),
+	EmailPromotion	        	int,
+	AdditionalContactInfo	    xml,
+	Demographics		          xml,
+	rowguid				            uniqueidentifier,
+	ModifiedDate		          datetime,
+			-- Metadata columns
+	LoadDate                  datetime DEFAULT GETDATE(),
+  SourceSystem              nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+--- For Person_PersonPhone
+IF OBJECT_ID ('Bronze.Person_PersonPhone', 'U') IS NOT NULL
+DROP TABLE Bronze.Person_PersonPhone;
+CREATE TABLE Bronze.Person_PersonPhone
+(
+	BusinessEntityID	        int,
+	PhoneNumber			          nvarchar(25),
+	PhoneNumberTypeID	        int,
+	ModifiedDate		          datetime,
+			-- Metadata columns
+	LoadDate                  datetime DEFAULT GETDATE(),
+  SourceSystem              nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+--- For Person_PhoneNumber
+IF OBJECT_ID ('Bronze.Person_PhoneNumberType', 'U') IS NOT NULL
+DROP TABLE Bronze.Person_PhoneNumberType;
+CREATE TABLE Bronze.Person_PhoneNumberType
+(
+	PhoneNumberTypeID	          int,
+	Name				                nvarchar(50),
+	ModifiedDate		            datetime,
+			-- Metadata columns
+	LoadDate                    datetime DEFAULT GETDATE(),
+  SourceSystem                nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+--- Person_StateProvince
+IF OBJECT_ID ('Bronze.Person_StateProvince', 'U') IS NOT NULL
+DROP TABLE Bronze.Person_StateProvince;
+CREATE TABLE Bronze.Person_StateProvince
+(
+	StateProvinceID		                int,
+	StateProvinceCode	                nchar(3),
+	CountryRegionCode	                nvarchar(50),
+	IsOnlyStateProvinceFlag	          bit,
+	Name				                      nvarchar(50),
+	TerritoryID			                  int,
+	rowguid				                    uniqueidentifier,
+	ModifiedDate		                  datetime,
+			-- Metadata columns
+	LoadDate                          datetime DEFAULT GETDATE(),
+  SourceSystem                      nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+---For Production_BillOfMaterials
+IF OBJECT_ID ('Bronze.Production_BillOfMaterials', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_BillOfMaterials;
+CREATE TABLE Bronze.Production_BillOfMaterials
+(
+	BillOfMaterialsID	              int,
+	ProductAssemblyID	              int,
+	ComponentID			                int,
+	StartDate			                  datetime,
+	EndDate				                  datetime,
+	UnitMeasureCode		              nchar(3),
+	BOMLevel			                  smallint,
+	PerAssemblyQty		              decimal(8,2),
+	ModifiedDate		                datetime,
+			-- Metadata columns
+	LoadDate                        datetime DEFAULT GETDATE(),
+  SourceSystem                    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Production_Culture', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_Culture;
+
+CREATE TABLE Bronze.Production_Culture
+(
+	CultureID			nchar(6),
+	Name				nvarchar(50),
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+IF OBJECT_ID ('Bronze.Production_Document', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_Document;
+
+CREATE TABLE Bronze.Production_Document
+(
+	DocumentNode		hierarchyid,
+	DocumentLevel		smallint,
+	Title				nvarchar(50),
+	Owner				int,
+	FolderFlag			bit,
+	FileName			nvarchar(50),
+	FileExtension		nvarchar(8),
+	Revision			nchar(5),
+	ChangeNumber		int,
+	Status				tinyint,
+	DocumentSummary		nvarchar(255),
+	Document			varbinary(max),
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+IF OBJECT_ID ('Bronze.Production_Illustration', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_Illustration;
+
+CREATE TABLE Bronze.Production_Illustration
+(
+	IllustrationID		int,
+	Diagram				varbinary(max),
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Production_Location', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_Location;
+
+CREATE TABLE Bronze.Production_Location
+(
+	LocationID			smallint,
+	Name				nvarchar(50),
+	CostRate			smallmoney,
+	Availability		decimal(8,2),
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+IF OBJECT_ID ('Bronze.Production_Product', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_Product;
+
+CREATE TABLE Bronze.Production_Product
+(
+	ProductID			int,
+	Name				nvarchar(50),
+	ProductNumber		nvarchar(25),
+	MakeFlag			bit,
+	FinishedGoodsFlag	bit,
+	Color				nvarchar(15),
+	SafetyStockLevel	smallint,
+	ReorderPoint		smallint,
+	StandardCost		money,
+	ListPrice			money,
+	Size				nvarchar(5),
+	SizeUnitMeasureCode	nchar(3),
+	WeightUnitMeasureCode nchar(3),
+	Weight				decimal(8,2),
+	DaysToManufacture	int,
+	ProductLine			nchar(2),
+	Class				nchar(2),
+	Style				nchar(2),
+	ProductSubcategoryID int,
+	ProductModelID		int,
+	SellStartDate		datetime,
+	SellEndDate			datetime,
+	DiscontinuedDate	datetime,
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Production_ProductCategory', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_ProductCategory;
+
+CREATE TABLE Bronze.Production_ProductCategory
+(
+	ProductCategoryID	int,
+	Name				nvarchar(50),
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Production_ProductCostHistory', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_ProductCostHistory;
+CREATE TABLE Bronze.Production_ProductCostHistory
+(
+	ProductID			int,
+	StartDate			datetime,
+	EndDate				datetime,
+	StandardCost		money,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Production_ProductDescription', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_ProductDescription;
+CREATE TABLE Bronze.Production_ProductDescription
+(
+	ProductDescriptionID int,
+	Description			nvarchar(400),
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+IF OBJECT_ID ('Bronze.Production_ProductDocument', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_ProductDocument;
+CREATE TABLE Bronze.Production_ProductDocument
+(
+	ProductID			int,
+	DocumentNode		hierarchyid,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Production_ProductInventory', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_ProductInventory;
+CREATE TABLE Bronze.Production_ProductInventory
+(
+	ProductID			int,
+	LocationID			smallint,
+	Shelf				nvarchar(10),
+	Bin					tinyint,
+	Quantity			smallint,
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+IF OBJECT_ID ('Bronze.Production_ProductListPriceHistory', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_ProductListPriceHistory;
+CREATE TABLE Bronze.Production_ProductListPriceHistory
+(
+	ProductID			int,
+	StartDate			datetime,
+	EndDate				datetime,
+	ListPrice			money,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+IF OBJECT_ID ('Bronze.Production_ProductModel', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_ProductModel;
+CREATE TABLE Bronze.Production_ProductModel
+(
+	ProductModelID		int,
+	Name				nvarchar(50),
+	CatalogDescription	XML,
+	Instructions		XML,
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Production_ProductModelIllustration', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_ProductModelIllustration;
+CREATE TABLE Bronze.Production_ProductModelIllustration
+(
+	ProductModelID		int,
+	IllustrationID		int,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Production_ProductModelProductDescriptionCulture', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_ProductModelProductDescriptionCulture;
+CREATE TABLE Bronze.Production_ProductModelProductDescriptionCulture
+(
+	ProductModelID		int,
+	ProductDescriptionID int,
+	CultureID			nchar(6),
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Production_ProductPhoto', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_ProductPhoto;
+CREATE TABLE Bronze.Production_ProductPhoto
+(
+	ProductPhotoID		int,
+	ThumbNailPhoto		varbinary(max),
+	ThumbnailPhotoFileName nvarchar(50),
+	LargePhoto			varbinary(max),
+	LargePhotoFileName	nvarchar(50),
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Production_ProductProductPhoto', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_ProductProductPhoto;
+CREATE TABLE Bronze.Production_ProductProductPhoto
+(
+	ProductID			int,
+	ProductPhotoID		int,
+	Primary				bit,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Production_ProductReview', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_ProductReview;
+CREATE TABLE Bronze.Production_ProductReview
+(
+	ProductReviewID		int,
+	ProductID			int,
+	ReviewerName		nvarchar(50),
+	ReviewDate			datetime,
+	EmailAddress		nvarchar(50),
+	Rating				int,
+	Comments			nvarchar(400),
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Production_ProductSubcategory', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_ProductSubcategory;
+CREATE TABLE Bronze.Production_ProductSubcategory
+(
+	ProductSubcategoryID int,
+	ProductCategoryID	int,
+	Name				nvarchar(50),
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Production_ScrapReason', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_ScrapReason;
+CREATE TABLE Bronze.Production_ScrapReason
+(
+	ScrapReasonID		smallint,
+	Name				nvarchar(50),
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+IF OBJECT_ID ('Bronze.Production_TransactionHistory', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_TransactionHistory;
+CREATE TABLE Bronze.Production_TransactionHistory
+(
+	TransactionID		int,
+	ProductID			int,
+	ReferenceOrderID	int,
+	ReferenceOrderLineID int,
+	TransactionDate		datetime,
+	TransactionType		nchar(1),
+	Quantity			int,
+	ActualCost			money,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+IF OBJECT_ID ('Bronze.Production_TransactionHistoryArchive', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_TransactionHistoryArchive;
+CREATE TABLE Bronze.Production_TransactionHistoryArchive
+(
+	TransactionID		int,
+	ProductID			int,
+	ReferenceOrderID	int,
+	ReferenceOrderLineID int,
+	TransactionDate		datetime,
+	TransactionType		nchar(1),
+	Quantity			int,
+	ActualCost			money,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Production_UnitMeasure', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_UnitMeasure;
+CREATE TABLE Bronze.Production_UnitMeasure
+(
+	UnitMeasureCode		nchar(3),
+	Name				nvarchar(50),
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Production_WorkOrder', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_WorkOrder;
+CREATE TABLE Bronze.Production_WorkOrder
+(
+	WorkOrderID			int,
+	ProductID			int,
+	OrderQty			int,
+	StockedQty			int,
+	ScrappedQty			smallint,
+	StartDate			datetime,
+	EndDate				datetime,
+	DueDate				datetime,
+	ScrapReasonID		smallint,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Production_WorkOrderRouting', 'U') IS NOT NULL
+DROP TABLE Bronze.Production_WorkOrderRouting;
+CREATE TABLE Bronze.Production_WorkOrderRouting
+(
+	WorkOrderID			int,
+	ProductID			int,
+	OperationSequence	smallint,
+	LocationID			smallint,
+	ScheduledStartDate	datetime,
+	ScheduledEndDate	datetime,
+	ActualStartDate		datetime,
+	ActualEndDate		datetime,
+	ActualResourceHrs	decimal(9,2),
+	PlannedCost			money,
+	ActualCost			money,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Purchasing_ProductVendor', 'U') IS NOT NULL
+DROP TABLE Bronze.Purchasing_ProductVendor;
+CREATE TABLE Bronze.Purchasing_ProductVendor
+(
+	ProductID			int,
+	BusinessEntityID	int,
+	AverageLeadTime		int,
+	StandardPrice		money,
+	LastReceiptCost		money,
+	LastReceiptDate		datetime,
+	MinOrderQty			int,
+	MaxOrderQty			int,
+	OnOrderQty			int,
+	UnitMeasureCode		nchar(3),
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Purchasing_PurchaseOrderDetail', 'U') IS NOT NULL
+DROP TABLE Bronze.Purchasing_PurchaseOrderDetail;
+CREATE TABLE Bronze.Purchasing_PurchaseOrderDetail
+(
+	PurchaseOrderID		int,
+	PurchaseOrderDetailID int,
+	DueDate				datetime,
+	OrderQty			smallint,
+	ProductID			int,
+	UnitPrice			money,
+	LineTotal			money,
+	ReceivedQty			decimal(8,2),
+	RejectedQty			decimal(8,2),
+	StockedQty			decimal(8,2),
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Purchasing_PurchaseOrderHeader', 'U') IS NOT NULL
+DROP TABLE Bronze.Purchasing_PurchaseOrderHeader;
+CREATE TABLE Bronze.Purchasing_PurchaseOrderHeader
+(
+	PurchaseOrderID		int,
+	RevisionNumber		tinyint,
+	Status				tinyint,
+	EmployeeID			int,
+	VendorID			int,
+	ShipMethodID		int,
+	OrderDate			datetime,
+	ShipDate			datetime,
+	SubTotal			money,
+	TaxAmt				money,
+	Freight				money,
+	TotalDue			money,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+IF OBJECT_ID ('Bronze.Purchasing_ShipMethod', 'U') IS NOT NULL
+DROP TABLE Bronze.Purchasing_ShipMethod;
+CREATE TABLE Bronze.Purchasing_ShipMethod
+(
+	ShipMethodID		int,
+	Name				nvarchar(50),
+	ShipBase			money,
+	ShipRate			money,
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+IF OBJECT_ID ('Bronze.Purchasing_Vendor', 'U') IS NOT NULL
+DROP TABLE Bronze.Purchasing_Vendor;
+CREATE TABLE Bronze.Purchasing_Vendor
+(
+	BusinessEntityID	int,
+	AccountNumber		nvarchar(15),
+	Name				nvarchar(50),
+	CreditRating		tinyint,
+	PreferredVendorStatus bit,
+	ActiveFlag			bit,
+	PurchasingWebServiceURL nvarchar(1024),
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+IF OBJECT_ID ('Bronze.Sales_CountryRegionCurrency', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_CountryRegionCurrency;
+CREATE TABLE Bronze.Sales_CountryRegionCurrency
+(
+	CountryRegionCode	nvarchar(50),
+	CurrencyCode		nchar(3),
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Sales_CreditCard', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_CreditCard;
+CREATE TABLE Bronze.Sales_CreditCard
+(
+	CreditCardID		int,
+	CardType			nvarchar(50),
+	CardNumber			nvarchar(25),
+	ExpMonth			tinyint,
+	ExpYear				smallint,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Sales.Currency', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_Currency;
+CREATE TABLE Bronze.Sales_Currency
+(
+	CurrencyCode	nchar(3),
+	Name			nvarchar(50),
+	ModifiedDate	datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+
+);
+
+IF OBJECT_ID ('Bronze.Sales.CurrencyRate', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_CurrencyRate;
+CREATE TABLE Bronze.Sales_CurrencyRate
+(
+	CurrencyRateID		int,
+	CurrencyRateDate	datetime,
+	FromCurrencyCode	nchar(3),
+	ToCurrencyCode		nchar(3),
+	AverageRate			money,
+	EndOfDayRate		money,
+	ModifiedDate		datetime,
+
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+
+);
+
+
+IF OBJECT_ID ('Bronze.Sales_CurrencyRate', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_CurrencyRate;
+CREATE TABLE Bronze.Sales_CurrencyRate
+(
+	CurrencyRateID		int,
+	CurrencyRateDate	datetime,
+	FromCurrencyCode	nchar(3),
+	ToCurrencyCode		nchar(3),
+	AverageRate			money,
+	EndOfDayRate		money,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Sales_Customer', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_Customer;
+CREATE TABLE Bronze.Sales_Customer
+(
+	CustomerID		int,
+	PersonID		int,
+	StoreID			int,
+	TerritoryID		int,
+	AccountNumber	Varchar(10),
+	rowguid			uniqueidentifier,
+	ModifiedDate	datetime,
+	
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+IF OBJECT_ID ('Bronze.Sales_PersonCreditCard', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_PersonCreditCard;
+CREATE TABLE Bronze.Sales_PersonCreditCard
+(
+	BusinessEntityID	int,
+	CreditCardID		int,
+	ModifiedDate		datetime,
+	
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+IF OBJECT_ID ('Bronze.Sales_SalesOrderDetail', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_SalesOrderDetail;
+CREATE TABLE Bronze.Sales_SalesOrderDetail
+(
+	SalesOrderID		int,
+	SalesOrderDetailID	int,
+	CarrierTrackingNumber nvarchar(25),
+	OrderQty			smallint,
+	ProductID			int,
+	SpecialOfferID		int,
+	UnitPrice			money,
+	UnitPriceDiscount	money,
+	LineTotal			numeric(38,6),
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Sales_SalesOrderHeader', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_SalesOrderHeader;
+CREATE TABLE Bronze.Sales_SalesOrderHeader
+(
+	SalesOrderID		int,
+	RevisionNumber		tinyint,
+	OrderDate			datetime,
+	DueDate				datetime,
+	ShipDate			datetime,
+	Status				tinyint,
+	OnlineOrderFlag		bit,
+	SalesOrderNumber	nvarchar(25),
+	PurchaseOrderNumber	nvarchar(25),
+	AccountNumber		nvarchar(15),
+	CustomerID			int,
+	SalesPersonID		int,
+	TerritoryID			int,
+	BillToAddressID		int,
+	ShipToAddressID		int,
+	ShipMethodID		int,
+	CreditCardID		int,
+	CreditCardApprovalCode varchar(15),
+	CurrencyRateID		int,
+	SubTotal			money,
+	TaxAmt				money,
+	Freight				money,
+	TotalDue			money,
+	Comment				nvarchar(128),
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+
+IF OBJECT_ID ('Bronze.Sales_SalesOrderHeaderSalesReason', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_SalesOrderHeaderSalesReason;
+CREATE TABLE Bronze.Sales_SalesOrderHeaderSalesReason
+(
+	SalesOrderID		int,
+	SalesReasonID		int,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Sales_SalesPerson', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_SalesPerson;
+CREATE TABLE Bronze.Sales_SalesPerson
+(
+	BusinessEntityID	int,
+	TerritoryID			int,
+	SalesQuota			money,
+	Bonus				money,
+	CommissionPct		smallmoney,
+	SalesYTD			money,
+	SalesLastYear		money,
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Sales_SalesPersonQuotaHistory', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_SalesPersonQuotaHistory;
+CREATE TABLE Bronze.Sales_SalesPersonQuotaHistory
+(
+	BusinessEntityID	int,
+	QuotaDate			datetime,
+	SalesQuota			money,
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Sales_SalesReason', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_SalesReason;
+CREATE TABLE Bronze.Sales_SalesReason
+(
+	SalesReasonID		int,
+	Name				nvarchar(50),
+	ReasonType			nvarchar(50),
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+IF OBJECT_ID ('Bronze.Sales_SalesTaxRate', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_SalesTaxRate;
+CREATE TABLE Bronze.Sales_SalesTaxRate
+(
+	SalesTaxRateID		int,
+	StateProvinceID		int,
+	TaxType				tinyint,
+	TaxRate				smallmoney,
+	Name				nvarchar(50),
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Sales_SalesTerritory', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_SalesTerritory;
+CREATE TABLE Bronze.Sales_SalesTerritory
+(
+	TerritoryID			int,
+	Name				nvarchar(50),
+	CountryRegionCode	nvarchar(50),
+	[Group]				nvarchar(50),
+	SalesYTD			money,
+	SalesLastYear		money,
+	CostYTD				money,
+	CostLastYear		money,
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Sales_SalesTerritoryHistory', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_SalesTerritoryHistory;
+CREATE TABLE Bronze.Sales_SalesTerritoryHistory
+(
+	BusinessEntityID	int,
+	TerritoryID			int,
+	StartDate			datetime,
+	EndDate				datetime,
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Sales_ShoppingCartItem', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_ShoppingCartItem;
+CREATE TABLE Bronze.Sales_ShoppingCartItem
+(
+	ShoppingCartItemID	int,
+	ShoppingCartID		nvarchar(50),
+	Quantity			int,
+	ProductID			int,
+	DateCreated			datetime,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Sales_SpecialOffer', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_SpecialOffer;
+CREATE TABLE Bronze.Sales_SpecialOffer
+(
+	SpecialOfferID		int,
+	Description			nvarchar(255),
+	DiscountPct			smallmoney,
+	Type				nvarchar(50),
+	Category			nvarchar(50),
+	StartDate			datetime,
+	EndDate				datetime,
+	MinQty				int,
+	MaxQty				int,
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+IF OBJECT_ID ('Bronze.Sales_SpecialOfferProduct', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_SpecialOfferProduct;
+CREATE TABLE Bronze.Sales_SpecialOfferProduct
+(
+	SpecialOfferID		int,
+	ProductID			int,
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+IF OBJECT_ID ('Bronze.Sales_Store', 'U') IS NOT NULL
+DROP TABLE Bronze.Sales_Store;
+CREATE TABLE Bronze.Sales_Store
+(
+	BusinessEntityID	int,
+	Name				nvarchar(50),
+	SalesPerson			nvarchar(256),
+	Demographics		xml,
+	rowguid				uniqueidentifier,
+	ModifiedDate		datetime,
+			-- Metadata columns
+	LoadDate        datetime DEFAULT GETDATE(),
+    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+);
+
+
+
+
+
+
+
+
 
