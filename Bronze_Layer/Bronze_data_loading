@@ -50,16 +50,16 @@ IF OBJECT_ID ('Bronze.HumanResources_EmployeeDepartmentHistory', 'U') IS NOT NUL
 DROP TABLE Bronze.HumanResources_EmployeeDepartmentHistory;
 CREATE TABLE Bronze.HumanResources_EmployeeDepartmentHistory
 (
-	BusinessEntityID	        int,
-	DepartmentID		          smallint,
-	ShiftID				            tinyint,
-	StartDate			            date,
-	EndDate				            date,
-	ModifiedDate		          datetime,
+	BusinessEntityID	        	 int,
+	DepartmentID		          	 smallint,
+	ShiftID				             tinyint,
+	StartDate			             date,
+	EndDate				             date,
+	ModifiedDate		         	 datetime,
 
 	-- Metadata columns
-	LoadDate                  datetime DEFAULT GETDATE(),
-  SourceSystem              nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate                  		 datetime DEFAULT GETDATE(),
+  	SourceSystem              		 nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -70,13 +70,13 @@ CREATE TABLE Bronze.HumanResources_PayHistory
 (
 	BusinessEntityID	      int,
 	RateChangeDate		      datetime,
-	Rate				            money,
-	PayFrequency	        	tinyint,
-	ModifiedDate		        datetime,
+	Rate				      money,
+	PayFrequency	          tinyint,
+	ModifiedDate		      datetime,
 
 		-- Metadata columns
-	LoadDate                datetime DEFAULT GETDATE(),
-  SourceSystem            nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate                  datetime DEFAULT GETDATE(),
+  SourceSystem            	  nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
