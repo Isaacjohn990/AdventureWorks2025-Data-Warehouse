@@ -1,1 +1,1537 @@
+=================================
+LOADING DATA INTO BRONZE TABLES
+=================================
+
+
+--- HumanResources_Department---
+TRUNCATE TABLE Bronze.HumanResources_Department;
+INSERT INTO Bronze.HumanResources_Department
+(
+	DepartmentID,
+	Name, 
+	GroupName, 
+	ModifiedDate
+)
+SELECT 
+DepartmentID,
+Name,
+GroupName, 
+ModifiedDate
+FROM AdventureWorks2025.HumanResources.Department;
+
+
+--- HumanResources_Employee ---
+TRUNCATE TABLE Bronze.HumanResources_Employee;
+INSERT INTO Bronze.HumanResources_Employee
+(
+	BusinessEntityID,
+	NationalIDNumber, 
+	LoginID, 
+	OrganizationNode, 
+	OrganizationLevel, 
+	JobTitle, 
+	BirthDate, 
+	MaritalStatus, 
+	Gender, 
+	HireDate, 
+	SalariedFlag, 
+	VacationHours, 
+	SickLeaveHours, 
+	CurrentFlag, 
+	rowguid, 
+	ModifiedDate
+)
+SELECT
+BusinessEntityID,
+NationalIDNumber, 
+LoginID, 
+OrganizationNode, 
+OrganizationLevel, 
+JobTitle, 
+BirthDate, 
+MaritalStatus, 
+Gender, 
+HireDate, 
+SalariedFlag, 
+VacationHours, 
+SickLeaveHours, 
+CurrentFlag, 
+rowguid, 
+ModifiedDate
+FROM AdventureWorks2025.HumanResources.Employee;
+
+
+--- HumanResources_EmployeeDepartmentHistory ---
+TRUNCATE TABLE Bronze.HumanResources_EmployeeDepartmentHistory;
+INSERT INTO Bronze.HumanResources_EmployeeDepartmentHistory
+(
+	BusinessEntityID,	
+	DepartmentID,		
+	ShiftID,				
+	StartDate,			
+	EndDate,				
+	ModifiedDate
+)
+SELECT
+BusinessEntityID,	
+DepartmentID,		
+ShiftID,				
+StartDate,			
+EndDate,				
+ModifiedDate
+FROM AdventureWorks2025.HumanResources.EmployeeDepartmentHistory;
+
+
+--- HumanResources.EmployeePayHistory ---
+TRUNCATE TABLE Bronze.HumanResources_PayHistory;
+INSERT INTO Bronze.HumanResources_PayHistory
+(
+	BusinessEntityID,	
+	RateChangeDate,		
+	Rate,				
+	PayFrequency,		
+	ModifiedDate
+)
+SELECT
+BusinessEntityID,	
+RateChangeDate,		
+Rate,				
+PayFrequency,		
+ModifiedDate
+FROM AdventureWorks2025.HumanResources.EmployeePayHistory
+
+
+--- HumanResources.JobCandidate ---
+TRUNCATE TABLE Bronze.HumanResources_JobCandidate;
+INSERT INTO Bronze.HumanResources_JobCandidate
+(
+	JobCandidateID,		
+	BusinessEntityID,	
+	Resume,				
+	ModifiedDate	
+)
+SELECT
+JobCandidateID,		
+BusinessEntityID,	
+CONVERT(NVARCHAR(MAX), Resume),				
+ModifiedDate
+FROM AdventureWorks2025.HumanResources.JobCandidate;
+
+--- HumanResources.Shift
+TRUNCATE TABLE Bronze.HumanResources_Shift;
+INSERT INTO Bronze.HumanResources_Shift
+(
+	ShiftID,				
+	Name,				
+	StartTime,			
+	EndTime,				
+	ModifiedDate		
+)
+SELECT
+ShiftID,				
+Name,				
+StartTime,			
+EndTime,				
+ModifiedDate
+FROM AdventureWorks2025.HumanResources.Shift;
+
+
+--- Person Address ---
+TRUNCATE TABLE Bronze.Person_Address;
+INSERT INTO Bronze.Person_Address
+(
+	AddressID,			
+	AddressLine1,		
+	AddressLine2,		
+	City,				
+	StateProvinceID,		
+	PostalCode,			
+	SpatialLocation,		
+	rowguid,				
+	ModifiedDate		
+)
+SELECT
+AddressID,			
+AddressLine1,		
+AddressLine2,		
+City,				
+StateProvinceID,		
+PostalCode,			
+SpatialLocation,		
+rowguid,				
+ModifiedDate
+FROM AdventureWorks2025.Person.Address;
+
+
+--- PersonAddressType ---
+TRUNCATE TABLE Bronze.Person_AddressType;
+INSERT INTO Bronze.Person_AddressType
+(
+	AddressTypeID,		
+	Name,				
+	rowguid,				
+	ModifiedDate		
+)
+SELECT
+AddressTypeID,		
+Name,				
+rowguid,				
+ModifiedDate
+FROM AdventureWorks2025.Person.AddressType;
+
+
+--- Person.BusinessEntity ---
+TRUNCATE TABLE Bronze.Person_BusinessEntity;
+INSERT INTO Bronze.Person_BusinessEntity
+(
+	BusinessEntityID,	
+	rowguid,				
+	ModifiedDate		
+)
+SELECT
+BusinessEntityID,	
+rowguid,				
+ModifiedDate
+FROM AdventureWorks2025.Person.BusinessEntity;
+
+
+--- Person.BusinessEntityAddress ---
+TRUNCATE TABLE Bronze.Person_BusinessEntityAddress;
+INSERT INTO Bronze.Person_BusinessEntityAddress
+(
+	BusinessEntityID,	
+	AddressID,			
+	AddressTypeID,		
+	rowguid,				
+	ModifiedDate		
+)
+SELECT
+BusinessEntityID,	
+AddressID,			
+AddressTypeID,		
+rowguid,				
+ModifiedDate
+FROM AdventureWorks2025.Person.BusinessEntityAddress;
+
+
+--- Person.BusinessEntityContact ---
+TRUNCATE TABLE Bronze.Person_BusinessEntityContact;
+INSERT INTO Bronze.Person_BusinessEntityContact
+(
+BusinessEntityID,	
+PersonID,			
+ContactTypeID,		
+rowguid,				
+ModifiedDate		
+)
+SELECT
+BusinessEntityID,	
+PersonID,			
+ContactTypeID,		
+rowguid,				
+ModifiedDate
+FROM AdventureWorks2025.Person.BusinessEntityContact; 
+
+
+--- Person.ContactType ---
+TRUNCATE TABLE Bronze.Person_ContactType;
+INSERT INTO Bronze.Person_ContactType
+(
+	ContactTypeID,		
+	Name,				
+	ModifiedDate		
+)
+SELECT
+ContactTypeID,		
+Name,				
+ModifiedDate
+FROM AdventureWorks2025.Person.ContactType;
+
+
+--- Person.CountryRegion ---
+TRUNCATE TABLE Bronze.Person_CountryRegion;
+INSERT INTO  Bronze.Person_CountryRegion
+(
+	CountryRegionCode,
+	Name,				
+	ModifiedDate		
+)
+SELECT
+CountryRegionCode,
+Name,				
+ModifiedDate
+FROM AdventureWorks2025.Person.CountryRegion;
+
+--- Person.EmailAddress ---
+TRUNCATE TABLE Bronze.Person_EmailAddress;
+INSERT INTO  Bronze.Person_EmailAddress
+(
+	BusinessEntityID,	
+	EmailAddressID,		
+	EmailAddress,		
+	rowguid,				
+	ModifiedDate				
+)
+SELECT
+BusinessEntityID,	
+EmailAddressID,		
+EmailAddress,		
+rowguid,				
+ModifiedDate	
+FROM AdventureWorks2025.Person.EmailAddress;
+
+
+--- Person.Password ---
+TRUNCATE TABLE Bronze.Person_Password;
+INSERT INTO  Bronze.Person_Password
+(
+	BusinessEntityID,	
+	PasswordHash,		
+	PasswordSalt,		
+	rowguid,				
+	ModifiedDate				
+)
+SELECT
+BusinessEntityID,	
+PasswordHash,		
+PasswordSalt,		
+rowguid,				
+ModifiedDate
+FROM AdventureWorks2025.Person.Password;
+
+
+--- Person.Person ---
+TRUNCATE TABLE Bronze.Person_Person;
+INSERT INTO  Bronze.Person_Person
+(
+	BusinessEntityID,		
+	PersonType,				
+	NameStyle,				
+	Title,					
+	FirstName,				
+	MiddleName,				
+	LastName,				
+	Suffix,					
+	EmailPromotion,			
+	AdditionalContactInfo,	
+	Demographics,			
+	rowguid,					
+	ModifiedDate						
+)
+SELECT
+BusinessEntityID,		
+PersonType,				
+NameStyle,				
+Title,					
+FirstName,				
+MiddleName,				
+LastName,				
+Suffix,					
+EmailPromotion,			
+AdditionalContactInfo,	
+Demographics,			
+rowguid,					
+ModifiedDate			
+FROM AdventureWorks2025.Person.Person;
+
+
+--- Person.PersonPhone ---
+TRUNCATE TABLE Bronze.Person_PersonPhone;
+INSERT INTO  Bronze.Person_PersonPhone
+(
+	BusinessEntityID,	
+	PhoneNumber,			
+	PhoneNumberTypeID,	
+	ModifiedDate		
+)
+SELECT
+BusinessEntityID,	
+PhoneNumber,			
+PhoneNumberTypeID,	
+ModifiedDate
+FROM AdventureWorks2025.Person.PersonPhone;
+
+
+--- Person.PhoneNumberType ---
+TRUNCATE TABLE Bronze.Person_PhoneNumberType;
+INSERT INTO  Bronze.Person_PhoneNumberType
+(
+    PhoneNumberTypeID,
+	Name,				
+	ModifiedDate				
+)
+SELECT
+PhoneNumberTypeID,
+Name,				
+ModifiedDate
+FROM AdventureWorks2025.Person.PhoneNumberType;
+
+--- Person.StateProvince ---
+TRUNCATE TABLE Bronze.Person_StateProvince;
+INSERT INTO Bronze.Person_StateProvince
+(
+	StateProvinceID,		
+	StateProvinceCode,	
+	CountryRegionCode,	
+	IsOnlyStateProvinceFlag,	
+	Name,				
+	TerritoryID,			
+	rowguid,				
+	ModifiedDate		
+)
+SELECT 
+StateProvinceID,		
+StateProvinceCode,	
+CountryRegionCode,	
+IsOnlyStateProvinceFlag,	
+Name,				
+TerritoryID,			
+rowguid,				
+ModifiedDate
+FROM AdventureWorks2025.Person.StateProvince;
+
+
+---- Production.BillOf Materials ---
+TRUNCATE TABLE Bronze.Production_BillOfMaterials;
+INSERT INTO Bronze.Production_BillOfMaterials
+(
+BillOfMaterialsID,	
+ProductAssemblyID,	
+ComponentID,			
+StartDate,			
+EndDate,				
+UnitMeasureCode,		
+BOMLevel,			
+PerAssemblyQty,		
+ModifiedDate
+)
+SELECT
+BillOfMaterialsID,	
+ProductAssemblyID,	
+ComponentID,			
+StartDate,			
+EndDate,				
+UnitMeasureCode,		
+BOMLevel,			
+PerAssemblyQty,		
+ModifiedDate
+FROM AdventureWorks2025.Production.BillOfMaterials;
+
+--- Production.Culture ---
+TRUNCATE TABLE Bronze.Production_Culture;
+INSERT INTO Bronze.Production_Culture
+(
+	CultureID,
+	Name,				
+	ModifiedDate		
+)
+SELECT
+CultureID,
+Name,			
+ModifiedDate
+FROM AdventureWorks2025.Production.Culture;
+
+
+--- Production.Document
+TRUNCATE TABLE Bronze.Production_Document;
+INSERT INTO Bronze.Production_Document
+(
+	DocumentNode,		
+	DocumentLevel,		
+	Title,				
+	Owner,				
+	FolderFlag,			
+	FileName,			
+	FileExtension,		
+	Revision,			
+	ChangeNumber,		
+	Status,				
+	DocumentSummary,		
+	Document,		
+	rowguid,				
+	ModifiedDate		
+)
+SELECT
+DocumentNode,		
+DocumentLevel,		
+Title,				
+Owner,				
+FolderFlag,			
+FileName,			
+FileExtension,		
+Revision,			
+ChangeNumber,		
+Status,				
+DocumentSummary,		
+Document,			
+rowguid,				
+ModifiedDate
+FROM AdventureWorks2025.Production.Document;
+
+
+---Production.Illustration ---
+TRUNCATE TABLE Bronze.Production_Illustration;
+INSERT INTO Bronze.Production_Illustration
+(
+	IllustrationID,
+	Diagram,				
+	ModifiedDate		
+)
+SELECT
+IllustrationID,
+Diagram,				
+ModifiedDate
+FROM AdventureWorks2025.Production.Illustration;
+
+
+--- Production.Location ---
+TRUNCATE TABLE Bronze.Production_Location;
+INSERT INTO Bronze.Production_Location
+(
+    LocationID,
+	Name,				
+	CostRate,			
+	Availability,		
+	ModifiedDate		
+)
+SELECT
+LocationID,
+Name,				
+CostRate,			
+Availability,		
+ModifiedDate	
+FROM AdventureWorks2025.Production.Location;
+
+
+--- Production.product ---
+TRUNCATE TABLE Bronze.Production_Product;
+INSERT INTO Bronze.Production_Product
+(
+  ProductID,			
+	Name,				
+	ProductNumber,		
+	MakeFlag,			
+	FinishedGoodsFlag,	
+	Color,				
+	SafetyStockLevel,	
+	ReorderPoint,		
+	StandardCost,		
+	ListPrice,			
+	Size,				
+	SizeUnitMeasureCode,	
+	WeightUnitMeasureCode, 
+	Weight,			
+	DaysToManufacture,	
+	ProductLine,			
+	Class,				
+	Style,				
+	ProductSubcategoryID, 
+	ProductModelID,		
+	SellStartDate,		
+	SellEndDate,			
+	DiscontinuedDate,	
+	rowguid,				
+	ModifiedDate		
+)
+SELECT
+ProductID,			
+Name,				
+ProductNumber,		
+MakeFlag,			
+FinishedGoodsFlag,	
+Color,				
+SafetyStockLevel,	
+ReorderPoint,		
+StandardCost,		
+ListPrice,			
+Size,				
+SizeUnitMeasureCode,	
+WeightUnitMeasureCode, 
+Weight,			
+DaysToManufacture,	
+ProductLine,			
+Class,				
+Style,				
+ProductSubcategoryID, 
+ProductModelID,		
+SellStartDate,		
+SellEndDate,			
+DiscontinuedDate,	
+rowguid,				
+ModifiedDate	
+FROM AdventureWorks2025.Production.Product;
+
+
+--- Production.ProductCategory ---
+TRUNCATE TABLE Bronze.Production_ProductCategory;
+INSERT INTO Bronze.Production_ProductCategory
+(
+	ProductCategoryID,	
+	Name,				
+	rowguid,				
+	ModifiedDate		
+)
+SELECT
+ProductCategoryID,	
+Name,				
+rowguid,				
+ModifiedDate	
+FROM AdventureWorks2025.Production.ProductCategory;
+
+
+--- Production.ProductCostHistory ---
+TRUNCATE TABLE Bronze.Production_ProductCostHistory;
+INSERT INTO Bronze.Production_ProductCostHistory
+(
+	ProductID,			
+	StartDate,		
+	EndDate,				
+	StandardCost,		
+	ModifiedDate		
+)
+SELECT
+ProductID,			
+StartDate,		
+EndDate,				
+StandardCost,		
+ModifiedDate
+FROM AdventureWorks2025.Production.ProductCostHistory;
+
+
+--- Production.ProductDescription ---
+TRUNCATE TABLE Bronze.Production_ProductDescription;
+INSERT INTO Bronze.Production_ProductDescription
+(
+	ProductDescriptionID, 
+	Description,			
+	rowguid,			
+	ModifiedDate		
+)
+SELECT
+ProductDescriptionID, 
+Description,			
+rowguid,			
+ModifiedDate
+FROM AdventureWorks2025.Production.ProductDescription;
+
+
+--- Production.ProductDocument---
+TRUNCATE TABLE Bronze.Production_ProductDocument;
+INSERT INTO Bronze.Production_ProductDocument
+(
+	ProductID,		
+	DocumentNode,		
+	ModifiedDate		
+)
+SELECT
+ProductID,		
+DocumentNode,		
+ModifiedDate
+FROM AdventureWorks2025.Production.ProductDocument;
+
+
+--- Production.ProductInventory ---
+TRUNCATE TABLE Bronze.Production_ProductInventory;
+INSERT INTO Bronze.Production_ProductInventory
+(
+	ProductID,			
+	LocationID,			
+	Shelf,				
+	Bin,					
+	Quantity,			
+	rowguid,				
+	ModifiedDate					
+)
+SELECT
+ProductID,			
+LocationID,			
+Shelf,				
+Bin,					
+Quantity,			
+rowguid,				
+ModifiedDate
+FROM AdventureWorks2025.Production.ProductInventory;
+
+
+--- Production.ProductListPriceHistory ---
+TRUNCATE TABLE Bronze.Production_ProductListPriceHistory;
+INSERT INTO Bronze.Production_ProductListPriceHistory
+(
+	ProductID,			
+	StartDate,			
+	EndDate,				
+	ListPrice,			
+	ModifiedDate		
+)
+SELECT
+ProductID,			
+StartDate,			
+EndDate,				
+ListPrice,			
+ModifiedDate
+FROM AdventureWorks2025.Production.ProductListPriceHistory;
+
+
+--- Production.ProductModel ---
+TRUNCATE TABLE Bronze.Production_ProductModel;
+INSERT INTO Bronze.Production_Productmodel
+(
+	ProductModelID,		
+	Name,				
+	CatalogDescription,	
+	Instructions,		
+	rowguid,				
+	ModifiedDate		
+)
+SELECT
+ProductModelID,		
+Name,				
+CatalogDescription,	
+Instructions,		
+rowguid,				
+ModifiedDate
+FROM AdventureWorks2025.Production.ProductModel;
+
+
+--- Production.ProductModelIllustrtion ---
+TRUNCATE TABLE Bronze.Production_ProductModelIllustration;
+INSERT INTO Bronze.Production_ProductmodelIllustration
+(
+	ProductModelID,		
+	IllustrationID,		
+	ModifiedDate		
+)
+SELECT
+ProductModelID,		
+IllustrationID,		
+ModifiedDate	
+FROM AdventureWorks2025.Production.ProductModelIllustration;
+
+
+--- Production.ProductModelProductDescriptionCulture ---
+TRUNCATE TABLE Bronze.Production_ProductModelProductDescriptionCulture;
+INSERT INTO Bronze.Production_ProductModelProductDescriptionCulture
+(
+ProductModelID,		
+ProductDescriptionID, 
+CultureID,			
+ModifiedDate	
+)
+SELECT
+ProductModelID,		
+ProductDescriptionID, 
+CultureID,			
+ModifiedDate
+FROM AdventureWorks2025.Production.ProductModelProductDescriptionCulture;
+
+
+---Production.ProductPhoto ---
+TRUNCATE TABLE Bronze.Production_ProductPhoto;
+INSERT INTO Bronze.Production_ProductPhoto
+(
+	ProductPhotoID,		
+	ThumbNailPhoto,		
+	ThumbnailPhotoFileName, 
+	LargePhoto,			
+	LargePhotoFileName,
+	ModifiedDate		
+)
+SELECT
+ProductPhotoID,		
+ThumbNailPhoto,		
+ThumbnailPhotoFileName, 
+LargePhoto,			
+LargePhotoFileName,
+ModifiedDate
+FROM AdventureWorks2025.Production.ProductPhoto;
+
+
+----Production.ProductReview/******Need revisting*****/
+TRUNCATE TABLE Bronze.Production_ProductReview;
+INSERT INTO Bronze.Production_ProductReview
+(
+ProductReviewID,
+ProductID,
+ReviewerName,
+ReviewDate,
+EmailAddress,
+Rating,
+Comments,
+ModifiedDate
+)
+SELECT
+ProductReviewID,
+ProductID,
+ReviewerName,
+ReviewDate,
+EmailAddress,
+Rating,
+Comments,
+ModifiedDate
+FROM AdventureWorks2025.Production.ProductReview;
+
+	
+
+--- Production.ProductSubcategory ---
+TRUNCATE TABLE Bronze.Production_ProductSubcategory;
+INSERT INTO Bronze.Production_ProductSubcategory
+(
+ProductSubcategoryID, 
+ProductCategoryID,	
+Name,				
+rowguid,				
+ModifiedDate	
+)
+SELECT
+ProductSubcategoryID, 
+ProductCategoryID,	
+Name,				
+rowguid,				
+ModifiedDate
+FROM AdventureWorks2025.Production.ProductSubcategory;
+
+--- Production.ScrapReason ---
+TRUNCATE TABLE Bronze.Production_ScrapReason;
+INSERT INTO Bronze.Production_ScrapReason
+(
+	ScrapReasonID,		
+	Name,			
+	ModifiedDate		
+)
+SELECT
+ScrapReasonID,		
+Name,			
+ModifiedDate
+FROM AdventureWorks2025.Production.ScrapReason;
+
+
+--- Production.TransactionHistory ---
+TRUNCATE TABLE Bronze.Production_TransactionHistory;
+INSERT INTO Bronze.Production_TransactionHistory
+(
+	TransactionID,		
+	ProductID,			
+	ReferenceOrderID,	
+	ReferenceOrderLineID,
+	TransactionType,		
+	Quantity,			
+	ActualCost,			
+	ModifiedDate				
+)
+SELECT
+TransactionID,		
+ProductID,			
+ReferenceOrderID,	
+ReferenceOrderLineID,
+TransactionType,		
+Quantity,			
+ActualCost,			
+ModifiedDate
+FROM AdventureWorks2025.Production.TransactionHistory;
+
+--- Production.TransactionHistoryArchive ---
+TRUNCATE TABLE Bronze.Production_TransactionHistoryArchive;
+INSERT INTO Bronze.Production_TransactionHistoryArchive
+(
+	TransactionID,
+	ProductID,			
+	ReferenceOrderID,	
+	ReferenceOrderLineID, 
+	TransactionDate,
+	TransactionType,		
+	Quantity,			
+	ActualCost,			
+	ModifiedDate				
+)
+SELECT
+	TransactionID,
+	ProductID,			
+	ReferenceOrderID,	
+	ReferenceOrderLineID, 
+	TransactionDate,
+	TransactionType,		
+	Quantity,			
+	ActualCost,			
+	ModifiedDate
+FROM AdventureWorks2025.Production.TransactionHistoryArchive;
+
+
+--- Production.UnitMeasure ---
+TRUNCATE TABLE Bronze.Production_UnitMeasure;
+INSERT INTO Bronze.Production_UnitMeasure
+(
+	UnitMeasureCode,		
+	Name,				
+	ModifiedDate					
+)
+SELECT
+UnitMeasureCode,		
+Name,				
+ModifiedDate	
+FROM AdventureWorks2025.Production.UnitMeasure;
+
+
+--- Production.WorkOrder ---
+TRUNCATE TABLE Bronze.Production_WorkOrder;
+INSERT INTO Bronze.Production_WorkOrder
+(
+	WorkOrderID,			
+	ProductID,			
+	OrderQty,			
+	StockedQty,			
+	ScrappedQty,		
+	StartDate,			
+	EndDate,				
+	DueDate,			
+	ScrapReasonID,		
+	ModifiedDate				
+)
+SELECT
+	WorkOrderID,			
+	ProductID,			
+	OrderQty,			
+	StockedQty,			
+	ScrappedQty,		
+	StartDate,			
+	EndDate,				
+	DueDate,			
+	ScrapReasonID,		
+	ModifiedDate	
+FROM AdventureWorks2025.Production.WorkOrder;
+
+
+--- Production.WorkOrderRouting ---
+TRUNCATE TABLE Bronze.Production_WorkOrderRouting;
+INSERT INTO Bronze.Production_WorkOrderRouting
+(
+	WorkOrderID,			
+	ProductID,			
+	OperationSequence,	
+	LocationID,			
+	ScheduledStartDate,	
+	ScheduledEndDate,	
+	ActualStartDate,		
+	ActualEndDate,		
+	ActualResourceHrs,	
+	PlannedCost,			
+	ActualCost,			
+	ModifiedDate					
+)
+SELECT
+	WorkOrderID,			
+	ProductID,			
+	OperationSequence,	
+	LocationID,			
+	ScheduledStartDate,	
+	ScheduledEndDate,	
+	ActualStartDate,		
+	ActualEndDate,		
+	ActualResourceHrs,	
+	PlannedCost,			
+	ActualCost,			
+	ModifiedDate	
+FROM AdventureWorks2025.Production.WorkOrderRouting;
+
+
+--- Purchasing.ProductVendor ---
+TRUNCATE TABLE Bronze.Purchasing_ProductVendor;
+INSERT INTO Bronze.Purchasing_ProductVendor
+(
+	ProductID,			
+	BusinessEntityID,	
+	AverageLeadTime,		
+	StandardPrice,		
+	LastReceiptCost,		
+	LastReceiptDate,	
+	MinOrderQty,			
+	MaxOrderQty,			
+	OnOrderQty,			
+	UnitMeasureCode,		
+	ModifiedDate					
+)
+SELECT
+	ProductID,			
+	BusinessEntityID,	
+	AverageLeadTime,		
+	StandardPrice,		
+	LastReceiptCost,		
+	LastReceiptDate,	
+	MinOrderQty,			
+	MaxOrderQty,			
+	OnOrderQty,			
+	UnitMeasureCode,		
+	ModifiedDate	
+FROM AdventureWorks2025.Purchasing.ProductVendor;
+
+
+--- Purchasing.PurchaseOrderDetail ---
+TRUNCATE TABLE Bronze.Purchasing_PurchaseOrderDetail;
+INSERT INTO Bronze.Purchasing_PurchaseOrderDetail
+(
+	PurchaseOrderID,		
+	PurchaseOrderDetailID, 
+	DueDate,				
+	OrderQty,			
+	ProductID,			
+	UnitPrice,			
+	LineTotal,			
+	ReceivedQty,			
+	RejectedQty,		
+	StockedQty,			
+	ModifiedDate				
+)
+SELECT
+	PurchaseOrderID,		
+	PurchaseOrderDetailID, 
+	DueDate,				
+	OrderQty,			
+	ProductID,			
+	UnitPrice,			
+	LineTotal,			
+	ReceivedQty,			
+	RejectedQty,		
+	StockedQty,			
+	ModifiedDate		
+FROM AdventureWorks2025.Purchasing.PurchaseOrderDetail;
+
+
+--- Purchasing.PurchaseOrderHeader ---
+TRUNCATE TABLE Bronze.Purchasing_PurchaseOrderHeader;
+INSERT INTO Bronze.Purchasing_PurchaseOrderHeader
+(
+	PurchaseOrderID,
+	RevisionNumber,		
+	Status,				
+	EmployeeID,			
+	VendorID,			
+	ShipMethodID,		
+	OrderDate,			
+	ShipDate,			
+	SubTotal,			
+	TaxAmt,				
+	Freight,				
+	TotalDue,			
+	ModifiedDate					
+)
+SELECT
+  PurchaseOrderID,
+	RevisionNumber,		
+	Status,				
+	EmployeeID,			
+	VendorID,			
+	ShipMethodID,		
+	OrderDate,			
+	ShipDate,			
+	SubTotal,			
+	TaxAmt,				
+	Freight,				
+	TotalDue,			
+	ModifiedDate	
+  FROM AdventureWorks2025.Purchasing.PurchaseOrderHeader;
+
+
+---Purchasing.ShipMethod
+TRUNCATE TABLE Bronze.Purchasing_ShipMethod;
+INSERT INTO Bronze.Purchasing_ShipMethod
+(
+	ShipMethodID,		
+	Name,				
+	ShipBase,			
+	ShipRate,			
+	rowguid,				
+	ModifiedDate					
+)
+SELECT
+	ShipMethodID,		
+	Name,				
+	ShipBase,			
+	ShipRate,			
+	rowguid,				
+	ModifiedDate
+FROM AdventureWorks2025.Purchasing.ShipMethod;
+
+
+
+---Purchasing.Vendor ---
+TRUNCATE TABLE Bronze.Purchasing_Vendor;
+INSERT INTO Bronze.Purchasing_Vendor
+(
+	BusinessEntityID,	
+	AccountNumber,		
+	Name,				
+	CreditRating,
+	PreferredVendorStatus, 
+	ActiveFlag,			
+	PurchasingWebServiceURL, 
+	ModifiedDate			
+)
+SELECT
+	BusinessEntityID,	
+	AccountNumber,		
+	Name,				
+	CreditRating,
+	PreferredVendorStatus, 
+	ActiveFlag,			
+	PurchasingWebServiceURL, 
+	ModifiedDate	
+FROM AdventureWorks2025.Purchasing.Vendor;
+
+
+---Sales.CountryRegionCurrency ---
+TRUNCATE TABLE Bronze.Sales_CountryRegionCurrency;
+INSERT INTO  Bronze.Sales_CountryRegionCurrency
+(
+	CountryRegionCode,	
+	CurrencyCode,		
+	ModifiedDate			
+)
+SELECT
+	CountryRegionCode,	
+	CurrencyCode,		
+	ModifiedDate	
+FROM AdventureWorks2025.Sales.CountryRegionCurrency;
+
+
+--- Sales.CreditCard ---
+TRUNCATE TABLE Bronze.Sales_CreditCard;
+INSERT INTO  Bronze.Sales_CreditCard
+(
+	CreditCardID,		
+	CardType,			
+	CardNumber,			
+	ExpMonth,			
+	ExpYear,				
+	ModifiedDate				
+)
+SELECT
+	CreditCardID,		
+	CardType,			
+	CardNumber,			
+	ExpMonth,			
+	ExpYear,				
+	ModifiedDate
+FROM AdventureWorks2025.Sales.CreditCard;
+
+
+--- Sales.Currency ---
+TRUNCATE TABLE Bronze.Sales_Currency;
+INSERT INTO  Bronze.Sales_Currency
+(
+	CurrencyCode,	
+	Name,			
+	ModifiedDate
+)
+SELECT
+	CurrencyCode,	
+	Name,			
+	ModifiedDate
+FROM AdventureWorks2025.Sales.Currency;
+
+
+--- Sales.CurrencyRate ---
+TRUNCATE TABLE Bronze.Sales_CurrencyRate;
+INSERT INTO  Bronze.Sales_CurrencyRate
+(
+	CurrencyRateID, 
+	CurrencyRateDate,
+	FromCurrencyCode, 
+	ToCurrencyCode,
+	AverageRate,
+	EndOfDayRate,
+	ModifiedDate			
+)
+SELECT
+	CurrencyRateID, 
+	CurrencyRateDate,
+	FromCurrencyCode, 
+	ToCurrencyCode,
+	AverageRate,
+	EndOfDayRate,
+	ModifiedDate	
+FROM AdventureWorks2025.Sales.CurrencyRate;
+
+
+--- Sales.Customer ---
+TRUNCATE TABLE Bronze.Sales_Customer;
+INSERT INTO  Bronze.Sales_Customer
+(
+	CustomerID, 
+	PersonID, 
+	StoreID,
+	TerritoryID, 
+	AccountNumber, 
+	rowguid, 
+	ModifiedDate			
+)
+SELECT
+	CustomerID, 
+	PersonID, 
+	StoreID,
+	TerritoryID, 
+	AccountNumber, 
+	rowguid, 
+	ModifiedDate
+FROM AdventureWorks2025.Sales.Customer;
+
+
+---Sales.PersonCreditCard ---
+TRUNCATE TABLE Bronze.Sales_PersonCreditCard;
+INSERT INTO  Bronze.Sales_PersonCreditCard
+(
+	BusinessEntityID,
+	CreditCardID, 
+	ModifiedDate		
+)
+SELECT
+BusinessEntityID,
+CreditCardID, 
+ModifiedDate	
+FROM AdventureWorks2025.Sales.PersonCreditCard;
+
+
+--- Sales.SalesOrderDetail ---
+TRUNCATE TABLE Bronze.Sales_SalesOrderDetail;
+INSERT INTO  Bronze.Sales_SalesOrderDetail
+(
+	SalesOrderID,		
+	SalesOrderDetailID,	
+	CarrierTrackingNumber, 
+	OrderQty,			
+	ProductID,			
+	SpecialOfferID,		
+	UnitPrice,			
+	UnitPriceDiscount,	
+	LineTotal,			
+	rowguid,				
+	ModifiedDate					
+)
+SELECT
+	SalesOrderID,		
+	SalesOrderDetailID,	
+	CarrierTrackingNumber, 
+	OrderQty,			
+	ProductID,			
+	SpecialOfferID,		
+	UnitPrice,			
+	UnitPriceDiscount,	
+	LineTotal,			
+	rowguid,				
+	ModifiedDate	
+FROM AdventureWorks2025.Sales.SalesOrderDetail;
+
+
+--- Sales.SalesOrderHeader ---
+TRUNCATE TABLE Bronze.Sales_SalesOrderHeader;
+INSERT INTO  Bronze.Sales_SalesOrderHeader
+(
+	SalesOrderID,
+	RevisionNumber,		
+	OrderDate,			
+	DueDate,				
+	ShipDate,			
+	Status,				
+	OnlineOrderFlag,
+	SalesOrderNumber,
+	PurchaseOrderNumber,
+	AccountNumber,
+	CustomerID,
+	SalesPersonID,
+	TerritoryID,
+	BillToAddressID,
+	ShipToAddressID,
+	ShipMethodID,
+	CreditCardID,
+	CreditCardApprovalCode,
+	CurrencyRateID,
+	SubTotal,
+	TaxAmt,
+	Freight,
+	TotalDue,
+	Comment,
+	rowguid,
+	ModifiedDate				
+)
+SELECT
+	SalesOrderID,
+	RevisionNumber,		
+	OrderDate,			
+	DueDate,				
+	ShipDate,			
+	Status,				
+	OnlineOrderFlag,
+	SalesOrderNumber,
+	PurchaseOrderNumber,
+	AccountNumber,
+	CustomerID,
+	SalesPersonID,
+	TerritoryID,
+	BillToAddressID,
+	ShipToAddressID,
+	ShipMethodID,
+	CreditCardID,
+	CreditCardApprovalCode,
+	CurrencyRateID,
+	SubTotal,
+	TaxAmt,
+	Freight,
+	TotalDue,
+	Comment,
+	rowguid,
+	ModifiedDate
+FROM AdventureWorks2025.Sales.SalesOrderHeader;
+
+
+--- Sales.SalesOrderHeaderSalesReason ---
+TRUNCATE TABLE Bronze.Sales_SalesOrderHeaderSalesReason;
+INSERT INTO  Bronze.Sales_SalesOrderHeaderSalesReason
+(
+	SalesOrderID,		
+	SalesReasonID,		
+	ModifiedDate				
+)
+SELECT
+	SalesOrderID,		
+	SalesReasonID,		
+	ModifiedDate
+FROM AdventureWorks2025.Sales.SalesOrderHeaderSalesReason;
+
+
+
+--- Sales.SalesPerson ---
+TRUNCATE TABLE Bronze.Sales_SalesPerson;
+INSERT INTO  Bronze.Sales_SalesPerson
+(
+	BusinessEntityID,	
+	TerritoryID,			
+	SalesQuota,			
+	Bonus,				
+	CommissionPct,		
+	SalesYTD,			
+	SalesLastYear,		
+	rowguid,				
+	ModifiedDate				
+)
+SELECT
+	BusinessEntityID,	
+	TerritoryID,			
+	SalesQuota,			
+	Bonus,				
+	CommissionPct,		
+	SalesYTD,			
+	SalesLastYear,		
+	rowguid,				
+	ModifiedDate
+FROM AdventureWorks2025.Sales.SalesPerson;
+
+
+--- Sales.SalesPersonQuotaHistory ---
+TRUNCATE TABLE Bronze.Sales_SalesPersonQuotaHistory;
+INSERT INTO  Bronze.Sales_SalesPersonQuotaHistory
+(
+	BusinessEntityID,
+	QuotaDate,
+	SalesQuota,
+	rowguid,
+	ModifiedDate			
+)
+SELECT
+	BusinessEntityID,
+	QuotaDate,
+	SalesQuota,
+	rowguid,
+	ModifiedDate
+FROM AdventureWorks2025.Sales.SalesPersonQuotaHistory;
+
+
+--- Sales.SalesReason ---
+TRUNCATE TABLE Bronze.Sales_SalesReason;
+INSERT INTO  Bronze.Sales_SalesReason
+(
+	SalesReasonID,
+	Name,
+	ReasonType,
+	ModifiedDate			
+)
+SELECT
+	SalesReasonID,
+	Name,
+	ReasonType,
+	ModifiedDate
+FROM AdventureWorks2025.Sales.SalesReason;
+
+
+--- Sales.SalesTaxRate ---
+TRUNCATE TABLE Bronze.Sales_SalesTaxRate;
+INSERT INTO  Bronze.Sales_SalesTaxRate
+(
+	SalesTaxRateID,
+	StateProvinceID,
+	TaxType,
+	TaxRate,
+	Name,
+	rowguid,
+	ModifiedDate		
+)
+SELECT
+	SalesTaxRateID,
+	StateProvinceID,
+	TaxType,
+	TaxRate,
+	Name,
+	rowguid,
+	ModifiedDate
+FROM AdventureWorks2025.Sales.SalesTaxRate;
+
+
+--- Sales.SalesTerritory ---
+TRUNCATE TABLE Bronze.Sales_SalesTerritory;
+INSERT INTO  Bronze.Sales_SalesTerritory
+(
+	TerritoryID,			
+	Name,
+	CountryRegionCode,
+	[Group],
+	SalesYTD,
+	SalesLastYear,
+	CostYTD,
+	CostLastYear,
+	rowguid,
+	ModifiedDate			
+)
+SELECT
+	TerritoryID,			
+	Name,
+	CountryRegionCode,
+	[Group],
+	SalesYTD,
+	SalesLastYear,
+	CostYTD,
+	CostLastYear,
+	rowguid,
+	ModifiedDate	
+FROM AdventureWorks2025.Sales.SalesTerritory;
+
+
+--- Sales.SalesTerritoryHistory ---
+TRUNCATE TABLE Bronze.Sales_SalesTerritoryHistory;
+INSERT INTO  Bronze.Sales_SalesTerritoryHistory
+(
+	BusinessEntityID,	
+	TerritoryID,			
+	StartDate,			
+	EndDate,				
+	rowguid,				
+	ModifiedDate					
+)
+SELECT
+	BusinessEntityID,	
+	TerritoryID,			
+	StartDate,			
+	EndDate,				
+	rowguid,				
+	ModifiedDate		
+FROM AdventureWorks2025.Sales.SalesTerritoryHistory;
+
+
+
+--- Sales.ShoppingCartItem ---
+TRUNCATE TABLE Bronze.Sales_ShoppingCartItem;
+INSERT INTO  Bronze.Sales_ShoppingCartItem
+(
+	ShoppingCartItemID,
+	ShoppingCartID,
+	Quantity,
+	ProductID,
+	DateCreated,
+	ModifiedDate			
+)
+SELECT
+	ShoppingCartItemID,
+	ShoppingCartID,
+	Quantity,
+	ProductID,
+	DateCreated,
+	ModifiedDate
+FROM AdventureWorks2025.Sales.ShoppingCartItem;
+
+
+--- Sales.SpecialOffer ---
+TRUNCATE TABLE Bronze.Sales_SpecialOffer;
+INSERT INTO  Bronze.Sales_SpecialOffer
+(
+	SpecialOfferID,
+	Description,
+	DiscountPct,
+	Type,
+	Category,
+	StartDate,
+	EndDate,
+	MinQty,
+	MaxQty,
+	rowguid,				
+	ModifiedDate					
+)
+SELECT
+	SpecialOfferID,
+	Description,
+	DiscountPct,
+	Type,
+	Category,
+	StartDate,
+	EndDate,
+	MinQty,
+	MaxQty,
+	rowguid,				
+	ModifiedDate
+FROM AdventureWorks2025.Sales.SpecialOffer;
+
+
+--- Sales.SpecialOfferProduct ---
+TRUNCATE TABLE Bronze.Sales_SpecialOfferProduct;
+INSERT INTO  Bronze.Sales_SpecialOfferProduct
+(
+	SpecialOfferID,
+	ProductID,
+	rowguid,
+	ModifiedDate			
+)
+SELECT
+	SpecialOfferID,
+	ProductID,
+	rowguid,
+	ModifiedDate	
+FROM AdventureWorks2025.Sales.SpecialOfferProduct;
+
+
+--- Sales.Store ---
+TRUNCATE TABLE Bronze.Sales_Store;
+INSERT INTO  Bronze.Sales_Store
+(
+	BusinessEntityID,	
+	Name,				
+	SalesPersonID,			
+	Demographics,		
+	rowguid,				
+	ModifiedDate					
+)
+SELECT
+	BusinessEntityID,	
+	Name,				
+	SalesPersonID,			
+	Demographics,		
+	rowguid,				
+	ModifiedDate	
+FROM AdventureWorks2025.Sales.Store;
+
+
+
+
+
+
+
+
+
+
+
+
 
