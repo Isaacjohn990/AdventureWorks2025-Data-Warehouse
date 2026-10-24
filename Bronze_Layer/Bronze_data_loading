@@ -76,7 +76,7 @@ CREATE TABLE Bronze.HumanResources_PayHistory
 
 		-- Metadata columns
 	LoadDate                  datetime DEFAULT GETDATE(),
-  SourceSystem            	  nvarchar(50) DEFAULT 'AdventureWorks'
+ 	SourceSystem              nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -340,32 +340,31 @@ IF OBJECT_ID ('Bronze.Production_BillOfMaterials', 'U') IS NOT NULL
 DROP TABLE Bronze.Production_BillOfMaterials;
 CREATE TABLE Bronze.Production_BillOfMaterials
 (
-	BillOfMaterialsID	              int,
-	ProductAssemblyID	              int,
-	ComponentID			                int,
-	StartDate			                  datetime,
-	EndDate				                  datetime,
-	UnitMeasureCode		              nchar(3),
-	BOMLevel			                  smallint,
-	PerAssemblyQty		              decimal(8,2),
-	ModifiedDate		                datetime,
+	BillOfMaterialsID	             	 int,
+	ProductAssemblyID	              	 int,
+	ComponentID			                 int,
+	StartDate			                 datetime,
+	EndDate				                 datetime,
+	UnitMeasureCode		                 nchar(3),
+	BOMLevel			                 smallint,
+	PerAssemblyQty		             	 decimal(8,2),
+	ModifiedDate		               	 datetime,
 			-- Metadata columns
-	LoadDate                        datetime DEFAULT GETDATE(),
-  SourceSystem                    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate                       		 datetime DEFAULT GETDATE(),
+	SourceSystem                    	 nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
 IF OBJECT_ID ('Bronze.Production_Culture', 'U') IS NOT NULL
 DROP TABLE Bronze.Production_Culture;
-
 CREATE TABLE Bronze.Production_Culture
 (
 	CultureID			nchar(6),
 	Name				nvarchar(50),
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 IF OBJECT_ID ('Bronze.Production_Document', 'U') IS NOT NULL
@@ -388,8 +387,8 @@ CREATE TABLE Bronze.Production_Document
 	rowguid				uniqueidentifier,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 IF OBJECT_ID ('Bronze.Production_Illustration', 'U') IS NOT NULL
@@ -397,12 +396,12 @@ DROP TABLE Bronze.Production_Illustration;
 
 CREATE TABLE Bronze.Production_Illustration
 (
-	IllustrationID		int,
-	Diagram				varbinary(max),
-	ModifiedDate		datetime,
+	IllustrationID			int,
+	Diagram					varbinary(max),
+	ModifiedDate			datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate       		 	datetime DEFAULT GETDATE(),
+    SourceSystem    		nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -417,8 +416,8 @@ CREATE TABLE Bronze.Production_Location
 	Availability		decimal(8,2),
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 IF OBJECT_ID ('Bronze.Production_Product', 'U') IS NOT NULL
@@ -426,34 +425,34 @@ DROP TABLE Bronze.Production_Product;
 
 CREATE TABLE Bronze.Production_Product
 (
-	ProductID			int,
-	Name				nvarchar(50),
-	ProductNumber		nvarchar(25),
-	MakeFlag			bit,
-	FinishedGoodsFlag	bit,
-	Color				nvarchar(15),
-	SafetyStockLevel	smallint,
-	ReorderPoint		smallint,
-	StandardCost		money,
-	ListPrice			money,
-	Size				nvarchar(5),
-	SizeUnitMeasureCode	nchar(3),
-	WeightUnitMeasureCode nchar(3),
-	Weight				decimal(8,2),
-	DaysToManufacture	int,
-	ProductLine			nchar(2),
-	Class				nchar(2),
-	Style				nchar(2),
-	ProductSubcategoryID int,
-	ProductModelID		int,
-	SellStartDate		datetime,
-	SellEndDate			datetime,
-	DiscontinuedDate	datetime,
-	rowguid				uniqueidentifier,
-	ModifiedDate		datetime,
+	ProductID					int,
+	Name						nvarchar(50),
+	ProductNumber				nvarchar(25),
+	MakeFlag					bit,
+	FinishedGoodsFlag			bit,
+	Color						nvarchar(15),
+	SafetyStockLevel			smallint,
+	ReorderPoint				smallint,
+	StandardCost				money,
+	ListPrice					money,
+	Size						nvarchar(5),
+	SizeUnitMeasureCode			nchar(3),
+	WeightUnitMeasureCode 		nchar(3),
+	Weight						decimal(8,2),
+	DaysToManufacture			int,
+	ProductLine					nchar(2),
+	Class						nchar(2),
+	Style						nchar(2),
+	ProductSubcategoryID 		int,
+	ProductModelID				int,
+	SellStartDate				datetime,
+	SellEndDate					datetime,
+	DiscontinuedDate			datetime,
+	rowguid						uniqueidentifier,
+	ModifiedDate				datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        			datetime DEFAULT GETDATE(),
+    SourceSystem    			nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -462,13 +461,13 @@ DROP TABLE Bronze.Production_ProductCategory;
 
 CREATE TABLE Bronze.Production_ProductCategory
 (
-	ProductCategoryID	int,
-	Name				nvarchar(50),
-	rowguid				uniqueidentifier,
-	ModifiedDate		datetime,
+	ProductCategoryID			int,
+	Name						nvarchar(50),
+	rowguid						uniqueidentifier,
+	ModifiedDate				datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        			datetime DEFAULT GETDATE(),
+    SourceSystem    			nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -482,8 +481,8 @@ CREATE TABLE Bronze.Production_ProductCostHistory
 	StandardCost		money,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -496,8 +495,8 @@ CREATE TABLE Bronze.Production_ProductDescription
 	rowguid				uniqueidentifier,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 IF OBJECT_ID ('Bronze.Production_ProductDocument', 'U') IS NOT NULL
@@ -508,8 +507,8 @@ CREATE TABLE Bronze.Production_ProductDocument
 	DocumentNode		hierarchyid,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -525,8 +524,8 @@ CREATE TABLE Bronze.Production_ProductInventory
 	rowguid				uniqueidentifier,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 IF OBJECT_ID ('Bronze.Production_ProductListPriceHistory', 'U') IS NOT NULL
@@ -539,8 +538,8 @@ CREATE TABLE Bronze.Production_ProductListPriceHistory
 	ListPrice			money,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 IF OBJECT_ID ('Bronze.Production_ProductModel', 'U') IS NOT NULL
@@ -554,8 +553,8 @@ CREATE TABLE Bronze.Production_ProductModel
 	rowguid				uniqueidentifier,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -567,8 +566,8 @@ CREATE TABLE Bronze.Production_ProductModelIllustration
 	IllustrationID		int,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -576,13 +575,13 @@ IF OBJECT_ID ('Bronze.Production_ProductModelProductDescriptionCulture', 'U') IS
 DROP TABLE Bronze.Production_ProductModelProductDescriptionCulture;
 CREATE TABLE Bronze.Production_ProductModelProductDescriptionCulture
 (
-	ProductModelID		int,
-	ProductDescriptionID int,
-	CultureID			nchar(6),
-	ModifiedDate		datetime,
+	ProductModelID				int,
+	ProductDescriptionID 		int,
+	CultureID					nchar(6),
+	ModifiedDate				datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        			datetime DEFAULT GETDATE(),
+    SourceSystem    			nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -590,15 +589,15 @@ IF OBJECT_ID ('Bronze.Production_ProductPhoto', 'U') IS NOT NULL
 DROP TABLE Bronze.Production_ProductPhoto;
 CREATE TABLE Bronze.Production_ProductPhoto
 (
-	ProductPhotoID		int,
-	ThumbNailPhoto		varbinary(max),
-	ThumbnailPhotoFileName nvarchar(50),
-	LargePhoto			varbinary(max),
-	LargePhotoFileName	nvarchar(50),
-	ModifiedDate		datetime,
+	ProductPhotoID				int,
+	ThumbNailPhoto				varbinary(max),
+	ThumbnailPhotoFileName 		nvarchar(50),
+	LargePhoto					varbinary(max),
+	LargePhotoFileName			nvarchar(50),
+	ModifiedDate				datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        			datetime DEFAULT GETDATE(),
+    SourceSystem    			nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -611,8 +610,8 @@ CREATE TABLE Bronze.Production_ProductProductPhoto
 	Primary				bit,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -629,8 +628,8 @@ CREATE TABLE Bronze.Production_ProductReview
 	Comments			nvarchar(400),
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -638,14 +637,14 @@ IF OBJECT_ID ('Bronze.Production_ProductSubcategory', 'U') IS NOT NULL
 DROP TABLE Bronze.Production_ProductSubcategory;
 CREATE TABLE Bronze.Production_ProductSubcategory
 (
-	ProductSubcategoryID int,
-	ProductCategoryID	int,
-	Name				nvarchar(50),
-	rowguid				uniqueidentifier,
-	ModifiedDate		datetime,
+	ProductSubcategoryID 		int,
+	ProductCategoryID			int,
+	Name						nvarchar(50),
+	rowguid						uniqueidentifier,
+	ModifiedDate				datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        			datetime DEFAULT GETDATE(),
+    SourceSystem    			nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -657,8 +656,8 @@ CREATE TABLE Bronze.Production_ScrapReason
 	Name				nvarchar(50),
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 IF OBJECT_ID ('Bronze.Production_TransactionHistory', 'U') IS NOT NULL
