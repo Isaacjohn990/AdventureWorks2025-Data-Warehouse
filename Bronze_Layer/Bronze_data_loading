@@ -22,26 +22,26 @@ IF OBJECT_ID ('Bronze.HumanResources_Employee', 'U') IS NOT NULL
 DROP TABLE Bronze.HumanResources_Employee;
 Create TABLE Bronze.HumanResources_Employee
 (
-	BusinessEntityID	    int,
-	NationalIDNumber	    nvarchar(15),
-	LoginID				        nvarchar(256),
-	OrganizationNode	    hierarchyid,
-	OrganizationLevel	    smallint,
-	JobTitle			        nvarchar(50),
-	BirthDate			        date,
-	MaritalStatus		      nchar(1),
-	Gender				        nchar(1),
-	HireDate			        date,
-	SalariedFlag		      bit,
-	VacationHours		      smallint,
-	SickLeaveHours		    smallint,
-	CurrentFlag			      bit,
-	rowguid				        uniqueidentifier,
-	ModifiedDate		      datetime,
+	BusinessEntityID	   		 int,
+	NationalIDNumber	    	 nvarchar(15),
+	LoginID				       	 nvarchar(256),
+	OrganizationNode	    	 hierarchyid,
+	OrganizationLevel	    	 smallint,
+	JobTitle			         nvarchar(50),
+	BirthDate			         date,
+	MaritalStatus		     	 nchar(1),
+	Gender				         nchar(1),
+	HireDate			         date,
+	SalariedFlag		         bit,
+	VacationHours		     	 smallint,
+	SickLeaveHours		   		 smallint,
+	CurrentFlag			      	 bit,
+	rowguid				         uniqueidentifier,
+	ModifiedDate		     	 datetime,
 
 	-- Metadata columns
-	LoadDate              datetime DEFAULT GETDATE(),
-  SourceSystem          nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate             		 datetime DEFAULT GETDATE(),
+ 	SourceSystem          		 nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
