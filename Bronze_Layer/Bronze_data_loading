@@ -7,13 +7,13 @@ IF OBJECT_ID ('Bronze.HumanResources_Department', 'U') IS NOT NULL
 DROP TABLE Bronze.HumanResources_Department;
 Create TABLE Bronze.HumanResources_Department
 (
-	DepartmentID	  smallint,
-	Name			      nvarchar(50),
-	GroupName		    nvarchar(50),
-	ModifiedDate	  datetime,
+	DepartmentID	  		smallint,
+	Name			      	nvarchar(50),
+	GroupName		    	nvarchar(50),
+	ModifiedDate	  		datetime,
 	-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-  SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        		datetime DEFAULT GETDATE(),
+  	SourceSystem    		nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
