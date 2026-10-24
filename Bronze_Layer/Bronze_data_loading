@@ -664,36 +664,36 @@ IF OBJECT_ID ('Bronze.Production_TransactionHistory', 'U') IS NOT NULL
 DROP TABLE Bronze.Production_TransactionHistory;
 CREATE TABLE Bronze.Production_TransactionHistory
 (
-	TransactionID		int,
-	ProductID			int,
-	ReferenceOrderID	int,
-	ReferenceOrderLineID int,
-	TransactionDate		datetime,
-	TransactionType		nchar(1),
-	Quantity			int,
-	ActualCost			money,
-	ModifiedDate		datetime,
+	TransactionID			int,
+	ProductID				int,
+	ReferenceOrderID		int,
+	ReferenceOrderLineID 	int,
+	TransactionDate			datetime,
+	TransactionType			nchar(1),
+	Quantity				int,
+	ActualCost				money,
+	ModifiedDate			datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        		datetime DEFAULT GETDATE(),
+    SourceSystem    		nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 IF OBJECT_ID ('Bronze.Production_TransactionHistoryArchive', 'U') IS NOT NULL
 DROP TABLE Bronze.Production_TransactionHistoryArchive;
 CREATE TABLE Bronze.Production_TransactionHistoryArchive
 (
-	TransactionID		int,
-	ProductID			int,
-	ReferenceOrderID	int,
-	ReferenceOrderLineID int,
-	TransactionDate		datetime,
-	TransactionType		nchar(1),
-	Quantity			int,
-	ActualCost			money,
-	ModifiedDate		datetime,
+	TransactionID				int,
+	ProductID					int,
+	ReferenceOrderID			int,
+	ReferenceOrderLineID 		int,
+	TransactionDate				datetime,
+	TransactionType				nchar(1),
+	Quantity					int,
+	ActualCost					money,
+	ModifiedDate				datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        			datetime DEFAULT GETDATE(),
+    SourceSystem    			nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -701,12 +701,12 @@ IF OBJECT_ID ('Bronze.Production_UnitMeasure', 'U') IS NOT NULL
 DROP TABLE Bronze.Production_UnitMeasure;
 CREATE TABLE Bronze.Production_UnitMeasure
 (
-	UnitMeasureCode		nchar(3),
-	Name				nvarchar(50),
-	ModifiedDate		datetime,
+	UnitMeasureCode				nchar(3),
+	Name						nvarchar(50),
+	ModifiedDate				datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        			datetime DEFAULT GETDATE(),
+    SourceSystem    			nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -725,8 +725,8 @@ CREATE TABLE Bronze.Production_WorkOrder
 	ScrapReasonID		smallint,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -747,8 +747,8 @@ CREATE TABLE Bronze.Production_WorkOrderRouting
 	ActualCost			money,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -768,8 +768,8 @@ CREATE TABLE Bronze.Purchasing_ProductVendor
 	UnitMeasureCode		nchar(3),
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -777,20 +777,20 @@ IF OBJECT_ID ('Bronze.Purchasing_PurchaseOrderDetail', 'U') IS NOT NULL
 DROP TABLE Bronze.Purchasing_PurchaseOrderDetail;
 CREATE TABLE Bronze.Purchasing_PurchaseOrderDetail
 (
-	PurchaseOrderID		int,
-	PurchaseOrderDetailID int,
-	DueDate				datetime,
-	OrderQty			smallint,
-	ProductID			int,
-	UnitPrice			money,
-	LineTotal			money,
-	ReceivedQty			decimal(8,2),
-	RejectedQty			decimal(8,2),
-	StockedQty			decimal(8,2),
-	ModifiedDate		datetime,
+	PurchaseOrderID			int,
+	PurchaseOrderDetailID 	int,
+	DueDate					datetime,
+	OrderQty				smallint,
+	ProductID				int,
+	UnitPrice				money,
+	LineTotal				money,
+	ReceivedQty				decimal(8,2),
+	RejectedQty				decimal(8,2),
+	StockedQty				decimal(8,2),
+	ModifiedDate			datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        		datetime DEFAULT GETDATE(),
+    SourceSystem    		nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -812,8 +812,8 @@ CREATE TABLE Bronze.Purchasing_PurchaseOrderHeader
 	TotalDue			money,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 IF OBJECT_ID ('Bronze.Purchasing_ShipMethod', 'U') IS NOT NULL
@@ -827,25 +827,25 @@ CREATE TABLE Bronze.Purchasing_ShipMethod
 	rowguid				uniqueidentifier,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 IF OBJECT_ID ('Bronze.Purchasing_Vendor', 'U') IS NOT NULL
 DROP TABLE Bronze.Purchasing_Vendor;
 CREATE TABLE Bronze.Purchasing_Vendor
 (
-	BusinessEntityID	int,
-	AccountNumber		nvarchar(15),
-	Name				nvarchar(50),
-	CreditRating		tinyint,
-	PreferredVendorStatus bit,
-	ActiveFlag			bit,
+	BusinessEntityID		int,
+	AccountNumber			nvarchar(15),
+	Name					nvarchar(50),
+	CreditRating			tinyint,
+	PreferredVendorStatus 	bit,
+	ActiveFlag				bit,
 	PurchasingWebServiceURL nvarchar(1024),
-	ModifiedDate		datetime,
+	ModifiedDate			datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate       			 datetime DEFAULT GETDATE(),
+    SourceSystem    		 nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 IF OBJECT_ID ('Bronze.Sales_CountryRegionCurrency', 'U') IS NOT NULL
@@ -856,8 +856,8 @@ CREATE TABLE Bronze.Sales_CountryRegionCurrency
 	CurrencyCode		nchar(3),
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -872,8 +872,8 @@ CREATE TABLE Bronze.Sales_CreditCard
 	ExpYear				smallint,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -903,8 +903,8 @@ CREATE TABLE Bronze.Sales_CurrencyRate
 	ModifiedDate		datetime,
 
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 
 );
 
@@ -921,8 +921,8 @@ CREATE TABLE Bronze.Sales_CurrencyRate
 	EndOfDayRate		money,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -952,28 +952,28 @@ CREATE TABLE Bronze.Sales_PersonCreditCard
 	ModifiedDate		datetime,
 	
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 IF OBJECT_ID ('Bronze.Sales_SalesOrderDetail', 'U') IS NOT NULL
 DROP TABLE Bronze.Sales_SalesOrderDetail;
 CREATE TABLE Bronze.Sales_SalesOrderDetail
 (
-	SalesOrderID		int,
-	SalesOrderDetailID	int,
-	CarrierTrackingNumber nvarchar(25),
-	OrderQty			smallint,
-	ProductID			int,
-	SpecialOfferID		int,
-	UnitPrice			money,
-	UnitPriceDiscount	money,
-	LineTotal			numeric(38,6),
-	rowguid				uniqueidentifier,
-	ModifiedDate		datetime,
+	SalesOrderID			int,
+	SalesOrderDetailID		int,
+	CarrierTrackingNumber 	nvarchar(25),
+	OrderQty				smallint,
+	ProductID				int,
+	SpecialOfferID			int,
+	UnitPrice				money,
+	UnitPriceDiscount		money,
+	LineTotal				numeric(38,6),
+	rowguid					uniqueidentifier,
+	ModifiedDate			datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        		datetime DEFAULT GETDATE(),
+    SourceSystem    		nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -1008,8 +1008,8 @@ CREATE TABLE Bronze.Sales_SalesOrderHeader
 	rowguid				uniqueidentifier,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem   		nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -1022,8 +1022,8 @@ CREATE TABLE Bronze.Sales_SalesOrderHeaderSalesReason
 	SalesReasonID		int,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -1041,8 +1041,8 @@ CREATE TABLE Bronze.Sales_SalesPerson
 	rowguid				uniqueidentifier,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate       		datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -1056,8 +1056,8 @@ CREATE TABLE Bronze.Sales_SalesPersonQuotaHistory
 	rowguid				uniqueidentifier,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -1070,8 +1070,8 @@ CREATE TABLE Bronze.Sales_SalesReason
 	ReasonType			nvarchar(50),
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate       		datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 IF OBJECT_ID ('Bronze.Sales_SalesTaxRate', 'U') IS NOT NULL
@@ -1086,8 +1086,8 @@ CREATE TABLE Bronze.Sales_SalesTaxRate
 	rowguid				uniqueidentifier,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -1106,8 +1106,8 @@ CREATE TABLE Bronze.Sales_SalesTerritory
 	rowguid				uniqueidentifier,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -1122,8 +1122,8 @@ CREATE TABLE Bronze.Sales_SalesTerritoryHistory
 	rowguid				uniqueidentifier,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -1138,8 +1138,8 @@ CREATE TABLE Bronze.Sales_ShoppingCartItem
 	DateCreated			datetime,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -1159,8 +1159,8 @@ CREATE TABLE Bronze.Sales_SpecialOffer
 	rowguid				uniqueidentifier,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 IF OBJECT_ID ('Bronze.Sales_SpecialOfferProduct', 'U') IS NOT NULL
@@ -1172,8 +1172,8 @@ CREATE TABLE Bronze.Sales_SpecialOfferProduct
 	rowguid				uniqueidentifier,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -1188,8 +1188,8 @@ CREATE TABLE Bronze.Sales_Store
 	rowguid				uniqueidentifier,
 	ModifiedDate		datetime,
 			-- Metadata columns
-	LoadDate        datetime DEFAULT GETDATE(),
-    SourceSystem    nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate        	datetime DEFAULT GETDATE(),
+    SourceSystem    	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
