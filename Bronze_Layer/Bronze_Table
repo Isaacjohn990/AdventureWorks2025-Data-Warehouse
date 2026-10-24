@@ -1,3 +1,46 @@
+
+===============================================================================
+Bronze Layer Load Script (Source -> Bronze)
+===============================================================================
+Script Purpose:
+    This script loads raw data from the AdventureWorks2025 source database
+    into the Bronze layer of the data warehouse.
+
+    It performs the following actions:
+    - Truncates the existing Bronze table to remove previously loaded data.
+    - Extracts data from the corresponding source table in AdventureWorks2025.
+    - Inserts the extracted records into the Bronze table without applying
+      transformations or data cleansing.
+    - Preserves the original source data for downstream processing in the
+      Silver and Gold layers.
+
+Source System:
+    AdventureWorks2025
+
+Target Layer:
+	Bronze
+
+
+Load Strategy:
+    Full Load (Truncate and Reload)
+
+Parameters:
+    None.
+    This script does not accept parameters or return values.
+
+Usage Example:
+    Execute this script to reload the Bronze.HumanResources_Department table.
+
+Note:
+	- Each script handles the loading of a specific source table. 
+	- Ensure the target Bronze table exists before executing the script.
+	- The target table is truncated before loading, so existing data is removed and replaced with the latest source data.
+	- Source and target column definitions must be compatible. 
+	- This script is designed for SQL Server table-to-table data loading.
+    
+===============================================================================
+
+
 =================================
 LOADING DATA INTO BRONZE TABLES
 =================================
