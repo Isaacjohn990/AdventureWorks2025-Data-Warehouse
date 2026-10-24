@@ -87,12 +87,12 @@ CREATE TABLE Bronze.HumanResources_JobCandidate
 (
 	JobCandidateID		          int,
 	BusinessEntityID	          int,
-	Resume				              xml,
-	ModifiedDate		            datetime,
+	Resume				          xml,
+	ModifiedDate		          datetime,
 
 		-- Metadata columns
-	LoadDate                    datetime DEFAULT GETDATE(),
-  SourceSystem                nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate                   	  datetime DEFAULT GETDATE(),
+  	SourceSystem                  nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -102,14 +102,14 @@ DROP TABLE Bronze.HumanResources_Shift;
 CREATE TABLE Bronze.HumanResources_Shift
 (
 	ShiftID				      tinyint,
-	Name				        nvarchar(50),
+	Name				      nvarchar(50),
 	StartTime			      time,
 	EndTime				      time,
-	ModifiedDate		    datetime,
+	ModifiedDate		      datetime,
 
 		-- Metadata columns
-	LoadDate            datetime DEFAULT GETDATE(),
-  SourceSystem        nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate                  datetime DEFAULT GETDATE(),
+  	SourceSystem              nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -119,33 +119,34 @@ DROP TABLE Bronze.Person_Address;
 CREATE TABLE Bronze.Person_Address
 (
 	AddressID			        int,
-	AddressLine1		      nvarchar(60),
-	AddressLine2		      nvarchar(60),
-	City				          nvarchar(30),
-	StateProvinceID		    int,
-	PostalCode			      nvarchar(15),
-	SpatialLocation		    geography,
+	AddressLine1		        nvarchar(60),
+	AddressLine2		        nvarchar(60),
+	City				        nvarchar(30),
+	StateProvinceID		        int,
+	PostalCode			        nvarchar(15),
+	SpatialLocation		        geography,
 	rowguid				        uniqueidentifier,
-	ModifiedDate		      datetime,
+	ModifiedDate		        datetime,
 
 		-- Metadata columns
-	LoadDate              datetime DEFAULT GETDATE(),
-  SourceSystem          nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate             		datetime DEFAULT GETDATE(),
+  	SourceSystem          		nvarchar(50) DEFAULT 'AdventureWorks'
 );
+
 
 ---For Person_AddressType
 IF OBJECT_ID ('Bronze.Person_AddressType', 'U') IS NOT NULL
 DROP TABLE Bronze.Person_AddressType;
 CREATE TABLE Bronze.Person_AddressType
 (
-	AddressTypeID		      int,
+	AddressTypeID		      	  int,
 	Name				          nvarchar(50),
-	rowguid				        uniqueidentifier,
-	ModifiedDate		      datetime,
+	rowguid				          uniqueidentifier,
+	ModifiedDate		          datetime,
 
 		-- Metadata columns
-	LoadDate              datetime DEFAULT GETDATE(),
-  SourceSystem          nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate              		  datetime DEFAULT GETDATE(),
+  	SourceSystem            	  nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -154,13 +155,13 @@ IF OBJECT_ID ('Bronze.Person_BusinessEntity', 'U') IS NOT NULL
 DROP TABLE Bronze.Person_BusinessEntity;
 CREATE TABLE Bronze.Person_BusinessEntity
 (
-	BusinessEntityID	    int,
+	BusinessEntityID	    	int,
 	rowguid				        uniqueidentifier,
-	ModifiedDate		      datetime,
+	ModifiedDate		      	datetime,
 
 	-- Metadata columns
-	LoadDate              datetime DEFAULT GETDATE(),
-    SourceSystem        nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate             		datetime DEFAULT GETDATE(),
+    SourceSystem       			nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -169,15 +170,15 @@ IF OBJECT_ID ('Bronze.Person_BusinessEntityAddress', 'U') IS NOT NULL
 DROP TABLE Bronze.Person_BusinessEntityAddress;
 CREATE TABLE Bronze.Person_BusinessEntityAddress
 (
-	BusinessEntityID	      int,
+	BusinessEntityID	     	  int,
 	AddressID			          int,
-	AddressTypeID		        int,
+	AddressTypeID		       	  int,
 	rowguid				          uniqueidentifier,
-	ModifiedDate		        datetime,
+	ModifiedDate		          datetime,
 
 		-- Metadata columns
-	LoadDate                datetime DEFAULT GETDATE(),
-  SourceSystem            nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate                	  datetime DEFAULT GETDATE(),
+ 	SourceSystem           		  nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -186,15 +187,15 @@ IF OBJECT_ID ('Bronze.Person_BusinessEntityContact', 'U') IS NOT NULL
 DROP TABLE Bronze.Person_BusinessEntityContact;
 CREATE TABLE Bronze.Person_BusinessEntityContact
 (
-	BusinessEntityID	      int,
+	BusinessEntityID	      	  int,
 	PersonID			          int,
-	ContactTypeID		        int,
+	ContactTypeID		          int,
 	rowguid				          uniqueidentifier,
-	ModifiedDate		        datetime,
+	ModifiedDate		          datetime,
 
 		-- Metadata columns
-	LoadDate                datetime DEFAULT GETDATE(),
-  SourceSystem            nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate                	  datetime DEFAULT GETDATE(),
+  SourceSystem           	 	  nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -203,13 +204,13 @@ IF OBJECT_ID ('Bronze.Person_ContactType', 'U') IS NOT NULL
 DROP TABLE Bronze.Person_ContactType;
 CREATE TABLE Bronze.Person_ContactType
 (
-	ContactTypeID		        int,
+	ContactTypeID		        	int,
 	Name				            nvarchar(50),
-	ModifiedDate		        datetime,
+	ModifiedDate		        	datetime,
 	
 		-- Metadata columns
-	LoadDate                datetime DEFAULT GETDATE(),
-  SourceSystem            nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate               			datetime DEFAULT GETDATE(),
+  	SourceSystem            		nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -220,12 +221,12 @@ DROP TABLE Bronze.Person_CountryRegion;
 CREATE TABLE Bronze.Person_CountryRegion
 (
 	CountryRegionCode	        nvarchar(50),
-	Name				              nvarchar(50),
-	ModifiedDate		          datetime,
+	Name				        nvarchar(50),
+	ModifiedDate		        datetime,
 	
 		-- Metadata columns
-	LoadDate                  datetime DEFAULT GETDATE(),
-  SourceSystem              nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate                  	datetime DEFAULT GETDATE(),
+  	SourceSystem              	nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -236,13 +237,13 @@ CREATE TABLE Bronze.Person_EmailAddress
 (
 	BusinessEntityID	          int,
 	EmailAddressID		          int,
-	EmailAddress		            nvarchar(50),
-	rowguid				              uniqueidentifier,
-	ModifiedDate		            datetime,
+	EmailAddress		          nvarchar(50),
+	rowguid				          uniqueidentifier,
+	ModifiedDate		          datetime,
 
 			-- Metadata columns
-	LoadDate                    datetime DEFAULT GETDATE(),
-  SourceSystem                nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate                      datetime DEFAULT GETDATE(),
+  	SourceSystem                  nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -251,14 +252,14 @@ IF OBJECT_ID ('Bronze.Person_Password', 'U') IS NOT NULL
 DROP TABLE Bronze.Person_Password;
 CREATE TABLE Bronze.Person_Password
 (
-	BusinessEntityID	        int,
-	PasswordHash		          varchar(128),
-	PasswordSalt		          varchar(10),
+	BusinessEntityID	        	int,
+	PasswordHash		         	varchar(128),
+	PasswordSalt		          	varchar(10),
 	rowguid				            uniqueidentifier,
-	ModifiedDate		          datetime,
+	ModifiedDate		          	datetime,
 			-- Metadata columns
-	LoadDate                  datetime DEFAULT GETDATE(),
-  SourceSystem              nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate                  		datetime DEFAULT GETDATE(),
+	SourceSystem              		nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -267,22 +268,22 @@ IF OBJECT_ID ('Bronze.Person_Person', 'U') IS NOT NULL
 DROP TABLE Bronze.Person_Person;
 CREATE TABLE Bronze.Person_Person
 (
-	BusinessEntityID	        int,
-	PersonType			          nchar(2),
+	BusinessEntityID	        	int,
+	PersonType			          	nchar(2),
 	NameStyle			            bit,
-	Title				              nvarchar(8),
+	Title				            nvarchar(8),
 	FirstName			            nvarchar(50),
-	MiddleName			          nvarchar(50),
+	MiddleName			          	nvarchar(50),
 	LastName			            nvarchar(50),
 	Suffix				            nvarchar(10),
-	EmailPromotion	        	int,
-	AdditionalContactInfo	    xml,
-	Demographics		          xml,
+	EmailPromotion	        		int,
+	AdditionalContactInfo	    	xml,
+	Demographics		          	xml,
 	rowguid				            uniqueidentifier,
-	ModifiedDate		          datetime,
+	ModifiedDate		          	datetime,
 			-- Metadata columns
-	LoadDate                  datetime DEFAULT GETDATE(),
-  SourceSystem              nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate                  		datetime DEFAULT GETDATE(),
+  	SourceSystem              		nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -291,26 +292,27 @@ IF OBJECT_ID ('Bronze.Person_PersonPhone', 'U') IS NOT NULL
 DROP TABLE Bronze.Person_PersonPhone;
 CREATE TABLE Bronze.Person_PersonPhone
 (
-	BusinessEntityID	        int,
-	PhoneNumber			          nvarchar(25),
-	PhoneNumberTypeID	        int,
-	ModifiedDate		          datetime,
+	BusinessEntityID	       	 	int,
+	PhoneNumber			        	nvarchar(25),
+	PhoneNumberTypeID	       		int,
+	ModifiedDate		        	datetime,
 			-- Metadata columns
-	LoadDate                  datetime DEFAULT GETDATE(),
-  SourceSystem              nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate                  		datetime DEFAULT GETDATE(),
+  SourceSystem              		nvarchar(50) DEFAULT 'AdventureWorks'
 );
+
 
 --- For Person_PhoneNumber
 IF OBJECT_ID ('Bronze.Person_PhoneNumberType', 'U') IS NOT NULL
 DROP TABLE Bronze.Person_PhoneNumberType;
 CREATE TABLE Bronze.Person_PhoneNumberType
 (
-	PhoneNumberTypeID	          int,
+	PhoneNumberTypeID	          		int,
 	Name				                nvarchar(50),
-	ModifiedDate		            datetime,
+	ModifiedDate		            	datetime,
 			-- Metadata columns
-	LoadDate                    datetime DEFAULT GETDATE(),
-  SourceSystem                nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate                    		datetime DEFAULT GETDATE(),
+  SourceSystem                			nvarchar(50) DEFAULT 'AdventureWorks'
 );
 
 
@@ -322,15 +324,16 @@ CREATE TABLE Bronze.Person_StateProvince
 	StateProvinceID		                int,
 	StateProvinceCode	                nchar(3),
 	CountryRegionCode	                nvarchar(50),
-	IsOnlyStateProvinceFlag	          bit,
-	Name				                      nvarchar(50),
-	TerritoryID			                  int,
-	rowguid				                    uniqueidentifier,
-	ModifiedDate		                  datetime,
+	IsOnlyStateProvinceFlag	          	bit,
+	Name				                nvarchar(50),
+	TerritoryID			                int,
+	rowguid				                uniqueidentifier,
+	ModifiedDate		                datetime,
 			-- Metadata columns
-	LoadDate                          datetime DEFAULT GETDATE(),
-  SourceSystem                      nvarchar(50) DEFAULT 'AdventureWorks'
+	LoadDate                         	datetime DEFAULT GETDATE(),
+  SourceSystem                     		nvarchar(50) DEFAULT 'AdventureWorks'
 );
+
 
 ---For Production_BillOfMaterials
 IF OBJECT_ID ('Bronze.Production_BillOfMaterials', 'U') IS NOT NULL
